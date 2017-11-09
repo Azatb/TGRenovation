@@ -31,7 +31,7 @@ public class CompanyRepository implements ICrud<Company> {
 
     @Override
     public void delete(int cvr) {
-
+        jdbc.update("DELETE FROM renovationdb.company WHERE CVR = " + cvr);
     }
 
     @Override

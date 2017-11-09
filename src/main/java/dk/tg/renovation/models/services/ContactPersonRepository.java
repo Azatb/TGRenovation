@@ -31,7 +31,7 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
 
     @Override
     public void delete(int cvr) {
-
+        jdbc.update("DELETE FROM renovationdb.contact_person WHERE fk_CVR = " + cvr);
     }
 
     @Override
