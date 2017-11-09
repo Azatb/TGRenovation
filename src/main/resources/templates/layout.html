@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="relics">
+    <link rel="stylesheet" href="C:\Users\gusta\IdeaProjects\TGRenovation\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <title>TG Renovation ApS</title>
+</head>
+
+<body>
+
+
+<header th:fragment="header">
+    <a href="index.html" th:href="@{/index}"> <img th:src="@{/img/TGRenovation.png}"/></a>
+</header>
+
+<ul th:fragment="tg-menu">
+    <li><a href="/">Forside</a> </li>
+    <li><a href="/">Services</a> </li>
+    <li><a href="/">Om os</a> </li>
+    <li><a href="afhentning.html" th:href="@{/afhentning}">Bestil afhentning</a> </li>
+    <li><a href="/">Kundeservice</a> </li>
+</ul>
+
+
+<footer th:fragment="footer">
+    &copy;
+    2017 Spring MVC Project
+</footer>
+
+
+</body>
+</html>
