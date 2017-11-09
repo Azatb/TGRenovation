@@ -1,13 +1,11 @@
 package dk.tg.renovation.controllers;
 
 
+import dk.tg.renovation.models.entities.AddtionalInfo;
 import dk.tg.renovation.models.entities.Company;
 import dk.tg.renovation.models.entities.ContactPerson;
 import dk.tg.renovation.models.entities.Oil;
-import dk.tg.renovation.models.services.CompanyRepository;
-import dk.tg.renovation.models.services.ContactPersonRepository;
-import dk.tg.renovation.models.services.ICrud;
-import dk.tg.renovation.models.services.OilRepository;
+import dk.tg.renovation.models.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +22,8 @@ public class HomeController {
     ICrud<ContactPerson> cpRepo = new ContactPersonRepository();
     @Autowired
     ICrud<Oil> oilRepo = new OilRepository();
+    @Autowired
+    ICrud<AddtionalInfo> addInfoRepo = new AdditionalInfoRepository();
 
     @GetMapping("/")
     public String index() {
@@ -44,10 +44,13 @@ public class HomeController {
                              @RequestParam("cpname") String cpname,
                              @RequestParam("phonenumber") int phonenumber,
                              @RequestParam("size") String size,
-                             @RequestParam("amount") int amount){
+                             @RequestParam("amount") int amount,
+                             @RequestParam("settlement") int settlement,
+                             @RequestParam("comments") String comments){
         companyRepo.create(new Company(cname, cvr, pnumber, puadress));
         cpRepo.create(new ContactPerson(cpname, phonenumber, cvr));
         oilRepo.create(new Oil(size, amount, cvr));
+        addInfoRepo.create(new AddtionalInfo(settlement, comments, cvr));
         return "redirect:/";
     }
 }
