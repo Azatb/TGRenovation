@@ -35,7 +35,7 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
 
     @Override
     public void delete(int cvr) {
-        System.out.println("Yo Momma so fat, she fat");
+        jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE id = " + cvr);
     }
 
     @Override
