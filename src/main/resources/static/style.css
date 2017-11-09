@@ -34,3 +34,7 @@ label, input {
 label {
     margin-bottom: 20px;
 }
+
+.fleft {
+    float: left;
+}
