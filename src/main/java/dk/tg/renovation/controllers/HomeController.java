@@ -30,14 +30,14 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/afhentning")
-    public String afhentning(Model model) {
+    @GetMapping("/opretAfhentning")
+    public String opretAfhentning(Model model) {
         model.addAttribute("company", new Company());
-        return "afhentning";
+        return "opretAfhentning";
     }
 
-    @PostMapping("/afhentning")
-    public String afhentning(@RequestParam("cname") String cname,
+    @PostMapping("/opretAfhentning")
+    public String opretAfhentning(@RequestParam("cname") String cname,
                              @RequestParam("cvr") int cvr,
                              @RequestParam("pnumber") int pnumber,
                              @RequestParam("puadress") String puadress,
@@ -52,5 +52,12 @@ public class HomeController {
         oilRepo.create(new Oil(size, amount, cvr));
         addInfoRepo.create(new AddtionalInfo(settlement, comments, cvr));
         return "redirect:/";
+    }
+
+
+
+    @GetMapping("/indexBruger")
+    public String indexBruger() {
+        return "indexBruger";
     }
 }

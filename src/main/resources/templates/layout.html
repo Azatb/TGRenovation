@@ -18,7 +18,37 @@
     <li><a href="/">Forside</a> </li>
     <li><a href="/">Services</a> </li>
     <li><a href="/">Om os</a> </li>
-    <li><a href="afhentning.html" th:href="@{/afhentning}">Bestil afhentning</a> </li>
+
+    <!-- linket / knappen til login popuppen -->
+    <li><a href="#popup1" >Login</a> </li>
+
+    <!-- referancen fra knappen er her til id popup1 -->
+    <div id="popup1" class="overlay">
+        <div class="popup">
+
+            <!--her er de 2 textblocke til username og password-->
+            <div class="form-group">
+                <input type="text" name="username" id="username" class="login-input"
+                       placeholder="UserName" required="true" autofocus="true"/>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" class="login-input"
+                       placeholder="Password" required="true"/>
+            </div>
+
+            <!--her skal være metode til at logge ind-->
+
+            <!-- her er knapperne i popup boxen -->
+            <a class="btn" href="#" >Cancel</a>
+            <a th:href="@{/}" class="btn">Login</a>
+
+        </div>
+    </div>
+
+
+
+
+    <li><a href="opretAfhentning.html" th:href="@{/opretAfhentning}">Tilmeld</a> </li>
     <li><a href="/">Kundeservice</a> </li>
 </ul>
 
@@ -27,6 +57,33 @@
     &copy;
     2017 Spring MVC Project
 </footer>
+
+
+
+
+<!--Det her er brugerens tg-menu-->
+
+<ul th:fragment="bruger-tg-menu">
+    <li><a href="/">Forside</a> </li>
+    <li><a href="/">Services</a> </li>
+    <li><a href="/">Om os</a> </li>
+    <li><a href="/">Se nuværende afhentninger</a> </li>
+    <li><a href="/">Bestil ny afhentning</a> </li>
+    <li><a href="/">Opdater afhentning</a> </li>
+    <li><a href="/">Afbestil afhentning</a> </li>
+    <li><a href="/">Kundeservice</a> </li>
+</ul>
+
+<!--Det her er chaufførens tg-menu-->
+
+
+<ul th:fragment="chaoffoer-tg-menu">
+    <li><a href="/">Forside</a> </li>
+    <li><a href="/">Services</a> </li>
+    <li><a href="/">Om os</a> </li>
+    <li><a href="/">Se Adresser/Telefon numre</a> </li>
+    <li><a href="/">Kundeservice</a> </li>
+</ul>
 
 
 </body>

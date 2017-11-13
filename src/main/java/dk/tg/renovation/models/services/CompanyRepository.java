@@ -23,6 +23,10 @@ public class CompanyRepository implements ICrud<Company> {
         return null;
     }
 
+
+    // create metoden der bliver kaldt fra homecontrollleren.
+    // Får et company ind i constructoren og får fat i værdierne med get metoder.
+    // Indsætter ind i databasen med MySql
     @Override
     public void create(Company company) {
         jdbc.update("INSERT INTO renovationdb.company(company_name, CVR, p_number, pickup_adress) " +

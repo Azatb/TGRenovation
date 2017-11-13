@@ -1,6 +1,23 @@
+body {
+    font-family: Calibri;
+}
+
 
 .btn {
+    background: #aeb0ad;
+    color: #dce2df;
+    padding: 7px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 1px 1px 1px #888888;
+    margin-bottom: 5px;
+    display: inline-block;
+    text-decoration: none;
+}
 
+.btn:hover {
+    background-color: #1a9a29;
 }
 
 ul {
@@ -13,6 +30,7 @@ ul {
 
 li {
     float: left;
+
 }
 
 li a {
@@ -32,9 +50,51 @@ label, input {
 }
 
 label {
+    margin-top: 25px;
+    margin-left: 30px;
     margin-bottom: 20px;
 }
 
-.fleft {
-    float: left;
+
+
+
+.popup {
+    margin: 300px auto;
+    text-align: center;
+    font: 14px Prototype, serif;
+    padding: 20px;
+    background: rgb(213, 213, 213);
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.61);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+input[type=text], input[type=password] {
+    width: 280px;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 2px;
+}
+
+.login-input {
+    display: inline-block;
+    width: 240px;
 }

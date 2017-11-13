@@ -26,6 +26,9 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
         return null;
     }
 
+    // create metoden der bliver kaldt fra homecontrollleren.
+    // Får et company ind i constructoren og får fat i værdierne med get metoder.
+    // Indsætter ind i databasen med MySql
     @Override
     public void create(AddtionalInfo addtionalInfo) {
         jdbc.update("INSERT INTO renovationdb.addtionalInfo(settlement, comments, fk_CVR) " +
