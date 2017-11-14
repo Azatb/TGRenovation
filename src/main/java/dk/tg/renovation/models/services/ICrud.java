@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public interface ICrud<T> {
+public interface ICrud<T>  {
 
     List<T> readAll();
 
@@ -16,4 +16,6 @@ public interface ICrud<T> {
     void delete(int cvr);
 
     void update(T t);
+
+    public T getCompany(String companyName, String password);
 }

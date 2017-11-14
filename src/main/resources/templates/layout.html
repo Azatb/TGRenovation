@@ -25,10 +25,10 @@
     <!-- referancen fra knappen er her til id popup1 -->
     <div id="popup1" class="overlay">
         <div class="popup">
-
+            <form  th:action="@{/login}" method="post">
             <!--her er de 2 textblocke til username og password-->
             <div class="form-group">
-                <input type="text" name="username" id="username" class="login-input"
+                <input type="text" name="cName" id="cName" class="login-input"
                        placeholder="UserName" required="true" autofocus="true"/>
             </div>
             <div class="form-group">
@@ -40,11 +40,10 @@
 
             <!-- her er knapperne i popup boxen -->
             <a class="btn" href="#" >Cancel</a>
-            <a th:href="@{/}" class="btn">Login</a>
-
+            <input type="submit" value="Login" class="btn"/>
+            </form>
         </div>
     </div>
-
 
 
 

@@ -31,7 +31,7 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
     // Indsætter ind i databasen med MySql
     @Override
     public void create(AddtionalInfo addtionalInfo) {
-        jdbc.update("INSERT INTO renovationdb.addtionalInfo(settlement, comments, fk_CVR) " +
+        jdbc.update("INSERT INTO renovationdb.additionalInfo(settlement, comments, fk_CVR) " +
                 "VALUES('" + addtionalInfo.getSettlement() + "', '" + addtionalInfo.getComments() + "', '" + addtionalInfo.getFkCVR() + "') ");
 
     }
@@ -44,5 +44,10 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
     @Override
     public void update(AddtionalInfo addtionalInfo) {
 
+    }
+
+    @Override
+    public AddtionalInfo getCompany(String companyName, String password) {
+        return null;
     }
 }

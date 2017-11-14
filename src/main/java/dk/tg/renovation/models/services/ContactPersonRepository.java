@@ -41,4 +41,9 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
     public void update(ContactPerson contactPerson) {
 
     }
+
+    @Override
+    public ContactPerson getCompany(String companyName, String password) {
+        return null;
+    }
 }

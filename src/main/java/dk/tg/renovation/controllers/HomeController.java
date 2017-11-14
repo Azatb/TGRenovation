@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,6 +39,7 @@ public class HomeController {
 
     @PostMapping("/opretAfhentning")
     public String opretAfhentning(@RequestParam("cname") String cname,
+                             @RequestParam("password") String password,
                              @RequestParam("cvr") int cvr,
                              @RequestParam("pnumber") int pnumber,
                              @RequestParam("puadress") String puadress,
@@ -45,9 +47,9 @@ public class HomeController {
                              @RequestParam("phonenumber") int phonenumber,
                              @RequestParam("size") String size,
                              @RequestParam("amount") int amount,
-                             @RequestParam("settlement") int settlement,
+                             @RequestParam("settlement") String settlement,
                              @RequestParam("comments") String comments){
-        companyRepo.create(new Company(cname, cvr, pnumber, puadress));
+        companyRepo.create(new Company(cname, password,  cvr, pnumber, puadress));
         cpRepo.create(new ContactPerson(cpname, phonenumber, cvr));
         oilRepo.create(new Oil(size, amount, cvr));
         addInfoRepo.create(new AddtionalInfo(settlement, comments, cvr));
@@ -59,5 +61,21 @@ public class HomeController {
     @GetMapping("/indexBruger")
     public String indexBruger() {
         return "indexBruger";
+    }
+
+
+    // login
+    @PostMapping("/login")
+    public String login(@ModelAttribute Company company,
+                        @RequestParam("cName") String cName,
+                        @RequestParam("password") String password){
+        //login her
+        company = companyRepo.getCompany(cName, password);
+
+        if (company == null) {
+            return "redirect:/";
+        }
+
+        return "redirect:/indexBruger";
     }
 }

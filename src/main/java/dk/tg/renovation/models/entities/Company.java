@@ -1,7 +1,9 @@
 package dk.tg.renovation.models.entities;
 
+
 public class Company {
     private String companyName;
+    private String password;
     private int cvr;
     private int pNumber;
     private String pickupAdress;
@@ -9,11 +11,20 @@ public class Company {
     public Company() {
     }
 
-    public Company(String companyName, int cvr, int pNumber, String pickupAdress) {
+    public Company(String companyName, String password, int cvr, int pNumber, String pickupAdress) {
         this.companyName = companyName;
+        this.password = password;
         this.cvr = cvr;
         this.pNumber = pNumber;
         this.pickupAdress = pickupAdress;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCompanyName() {

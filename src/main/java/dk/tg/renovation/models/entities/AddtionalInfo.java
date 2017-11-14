@@ -1,24 +1,24 @@
 package dk.tg.renovation.models.entities;
 
 public class AddtionalInfo {
-    private int settlement;
+    private String settlement;
     private String comments;
     private int fkCVR;
 
     public AddtionalInfo() {
     }
 
-    public AddtionalInfo(int settlement, String comments, int fkCVR) {
+    public AddtionalInfo(String settlement, String comments, int fkCVR) {
         this.settlement = settlement;
         this.comments = comments;
         this.fkCVR = fkCVR;
     }
 
-    public int getSettlement() {
+    public String getSettlement() {
         return settlement;
     }
 
-    public void setSettlement(int settlement) {
+    public void setSettlement(String settlement) {
         this.settlement = settlement;
     }
 

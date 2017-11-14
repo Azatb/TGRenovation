@@ -44,4 +44,9 @@ public class OilRepository implements ICrud<Oil> {
 
     }
 
+    @Override
+    public Oil getCompany(String companyName, String password) {
+        return null;
+    }
+
 }
