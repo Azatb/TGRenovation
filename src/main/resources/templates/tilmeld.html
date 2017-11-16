@@ -8,23 +8,35 @@
 
 <header th:replace="layout :: header"/>
 
-<ul th:replace="layout :: bruger-tg-menu"></ul>
+<ul th:replace="layout :: tg-menu"></ul>
 
-<form th:action="@{/opretAfhentning}" method="post">
 
-    <p> Opret ny afhentning</p>
+<form th:action="@{/tilmeld}" method="post">
+
+
+    <label> Company Name: <input type="text" name="cname"/>
+        </label>
+
+    <label> Password: <input type="password" name="password"/>
+    </label>
+
+    <label> CVR: <input type="text" name="cvr"/>
+        </label>
+
+    <label> P Number: <input type="text" name="pnumber"/>
+        </label>
 
     <label> Contact Person: <input type="text" name="cpname"/>
-    </label>
+        </label>
 
     <label> Phone Number: <input type="text" name="phonenumber"/>
-    </label>
+        </label>
 
     <label> Pickup Adress: <input type="text" name="puadress"/>
     </label>
 
-    <label> Container Size:
-    </label>
+     <label> Container Size:
+     </label>
 
     <label> <input type="radio" name="size" value="60L (53kg)" />60L (53kg)
     </label>
@@ -36,26 +48,24 @@
     </label>
 
     <label>
-        <input type="radio" name="size" value="IBC 800-1000L" />IBC 800-1000L
+    <input type="radio" name="size" value="IBC 800-1000L" />IBC 800-1000L
     </label>
 
 
     <label> Oil Amount <input type="text" name="amount"/>
-    </label>
+        </label>
 
     <label> Comments <input type="text" name="comments"/>
-    </label>
+        </label>
 
     <label> Settlement <input type="text" name="settlement" />
-    </label>
+        </label>
 
     <label> <input type="submit" value="Submit company"/>
-    </label>
+        </label>
 
 
 </form>
-
-
 
 
 <footer th:replace="layout :: footer"/>

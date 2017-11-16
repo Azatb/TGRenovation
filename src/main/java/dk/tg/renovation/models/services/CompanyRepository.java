@@ -31,8 +31,8 @@ public class CompanyRepository implements ICrud<Company> {
     // Indsætter ind i databasen med MySql
     @Override
     public void create(Company company) {
-        jdbc.update("INSERT INTO renovationdb.company(company_name, password, CVR, p_number, pickup_adress) " +
-                "VALUES('" + company.getCompanyName() + "', '" + company.getPassword() + "', '" + company.getCvr() + "', '" +  company.getpNumber() + "', '" + company.getPickupAdress() + "') ");
+        jdbc.update("INSERT INTO renovationdb.company(company_name, password, CVR, p_number) " +
+                "VALUES('" + company.getCompanyName() + "', '" + company.getPassword() + "', '" + company.getCvr() + "', '" +  company.getpNumber() + "') ");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CompanyRepository implements ICrud<Company> {
 
         while(sqlRowSet.next()){
             // indhold af sqlRowset ned i en arrayliste
-            companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"), sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number"), sqlRowSet.getString("pickup_adress")));
+            companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"), sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number")));
         }
 
 

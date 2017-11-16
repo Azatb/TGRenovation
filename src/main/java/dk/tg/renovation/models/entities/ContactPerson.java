@@ -4,15 +4,25 @@ public class ContactPerson {
 
     private String name;
     private int number;
+    private String pickupAdress;
     private int fkCVR;
 
     public ContactPerson() {
     }
 
-    public ContactPerson(String name, int number, int fkCVR) {
+    public ContactPerson(String name, int number, String pickupAdress, int fkCVR) {
         this.name = name;
         this.number = number;
+        this.pickupAdress = pickupAdress;
         this.fkCVR = fkCVR;
+    }
+
+    public String getPickupAdress() {
+        return pickupAdress;
+    }
+
+    public void setPickupAdress(String pickupAdress) {
+        this.pickupAdress = pickupAdress;
     }
 
     public String getName() {

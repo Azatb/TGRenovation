@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
+    Company company = new Company();
+
     @Autowired
     ICrud<Company> companyRepo = new CompanyRepository();
     @Autowired
@@ -31,26 +33,26 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/opretAfhentning")
-    public String opretAfhentning(Model model) {
+    @GetMapping("/tilmeld")
+    public String tilmeld(Model model) {
         model.addAttribute("company", new Company());
-        return "opretAfhentning";
+        return "tilmeld";
     }
 
-    @PostMapping("/opretAfhentning")
-    public String opretAfhentning(@RequestParam("cname") String cname,
+    @PostMapping("/tilmeld")
+    public String tilmeld(@RequestParam("cname") String cname,
                              @RequestParam("password") String password,
                              @RequestParam("cvr") int cvr,
                              @RequestParam("pnumber") int pnumber,
-                             @RequestParam("puadress") String puadress,
                              @RequestParam("cpname") String cpname,
                              @RequestParam("phonenumber") int phonenumber,
+                             @RequestParam("puadress") String puadress,
                              @RequestParam("size") String size,
                              @RequestParam("amount") int amount,
                              @RequestParam("settlement") String settlement,
                              @RequestParam("comments") String comments){
-        companyRepo.create(new Company(cname, password,  cvr, pnumber, puadress));
-        cpRepo.create(new ContactPerson(cpname, phonenumber, cvr));
+        companyRepo.create(new Company(cname, password,  cvr, pnumber));
+        cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, cvr));
         oilRepo.create(new Oil(size, amount, cvr));
         addInfoRepo.create(new AddtionalInfo(settlement, comments, cvr));
         return "redirect:/";
@@ -64,10 +66,29 @@ public class HomeController {
     }
 
 
+    @GetMapping("/opretAfhentning")
+    public String opretAfhetning() {
+        return "opretAfhentning";
+    }
+
+    @PostMapping("/opretAfhentning")
+    public String opretAfhentning(@RequestParam("cpname") String cpname,
+                                  @RequestParam("phonenumber") int phonenumber,
+                                  @RequestParam("puadress") String puadress,
+                                  @RequestParam("size") String size,
+                                  @RequestParam("amount") int amount,
+                                  @RequestParam("settlement") String settlement,
+                                  @RequestParam("comments") String comments) {
+        cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
+        oilRepo.create(new Oil(size, amount, company.getCvr()));
+        addInfoRepo.create(new AddtionalInfo(settlement, comments, company.getCvr()));
+        return "redirect:/";
+    }
+
+
     // login
     @PostMapping("/login")
-    public String login(@ModelAttribute Company company,
-                        @RequestParam("cName") String cName,
+    public String login(@RequestParam("cName") String cName,
                         @RequestParam("password") String password){
         //login her
         company = companyRepo.getCompany(cName, password);

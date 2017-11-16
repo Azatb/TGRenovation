@@ -28,8 +28,8 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
     // Indsætter ind i databasen med MySql
     @Override
     public void create(ContactPerson contactPerson) {
-        jdbc.update("INSERT INTO renovationdb.contact_person(name, number, fk_CVR) " +
-                "VALUES('" + contactPerson.getName() + "', '" + contactPerson.getNumber() + "', '" + contactPerson.getFkCVR() + "') ");
+        jdbc.update("INSERT INTO renovationdb.contact_person(name, number, pickup_adress, fk_CVR) " +
+                "VALUES('" + contactPerson.getName() + "', '" + contactPerson.getNumber() + "', '" + contactPerson.getPickupAdress() + "', '" + contactPerson.getFkCVR() + "') ");
     }
 
     @Override

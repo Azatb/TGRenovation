@@ -6,17 +6,15 @@ public class Company {
     private String password;
     private int cvr;
     private int pNumber;
-    private String pickupAdress;
 
     public Company() {
     }
 
-    public Company(String companyName, String password, int cvr, int pNumber, String pickupAdress) {
+    public Company(String companyName, String password, int cvr, int pNumber) {
         this.companyName = companyName;
         this.password = password;
         this.cvr = cvr;
         this.pNumber = pNumber;
-        this.pickupAdress = pickupAdress;
     }
 
     public String getPassword() {
@@ -49,13 +47,5 @@ public class Company {
 
     public void setpNumber(int pNumber) {
         this.pNumber = pNumber;
-    }
-
-    public String getPickupAdress() {
-        return pickupAdress;
-    }
-
-    public void setPickupAdress(String pickupAdress) {
-        this.pickupAdress = pickupAdress;
     }
 }
