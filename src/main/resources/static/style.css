@@ -1,5 +1,6 @@
 body {
-    font-family: Calibri;
+    font-family: Arial;
+    font-size: 90%;
     background-color: #dcdcdc;
 }
 
@@ -109,13 +110,25 @@ nav {
 }
 
 article {
+    line-height: 200%;
+    margin-top: 50px;
+    margin-left: 25px;
     margin-right: 28%;
     border-right: 1px solid gray;
     padding: 1em;
     overflow: hidden;
 }
 
-#red {
+#article2 {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 3%;
+    border-left: 2px solid black;
+    padding: 1em;
+    overflow: hidden;
+}
+
+.red {
     color: red;
     font-size: 16px;
 }
@@ -126,6 +139,11 @@ article {
 
 b {
     font-size: 18px;
+}
+
+header {
+    margin-left: 15px;
+    margin-top: 30px;
 }
 
 footer {
@@ -146,3 +164,4 @@ footer {
 .centreret {
     margin-left: 20%;
 }
+

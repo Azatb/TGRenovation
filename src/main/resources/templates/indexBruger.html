@@ -5,22 +5,57 @@
 </head>
 <body>
 
+<div class="wrapper">
 
-<header th:replace="layout :: header"/>
+    <header th:replace="layout :: header"/>
 
-<ul th:replace="layout :: bruger-tg-menu"></ul>
-<p> Træt af skjulte gebyrer og omkostninger? Vi tilbyder at afhente din olie ganske gratis og afregner 1 krone pr. liter brugt fritureolie! Klik her så kontakter vi dig eller ring til os for et uforpligtende tilbud!
+    <ul th:replace="layout :: bruger-tg-menu"></ul>
 
-    TG Renovation ApS er en godkendt dansk renovationsvirksomhed, som specialiserer sig i indsamling af vegetabilsk fritureolie.
+    <nav>
+        <b> ISCC Certifikation </b>
+        <br/> <br/>
 
-    Vi er foretrukken leverandør af flere restaurations og fastfood virksomheder landet over. Vores primære forcer er kvaliteten i vores arbejde, miljøvenlig håndtering af spildolie og højt serviceniveau i form af afhentning rettidigt.
+        <b class="red"> Vi er godkendt indsamler ved fødevarestyrelsen og certificeret hos ISCC </b>
 
-    Din fritureolie udgør et vigtig element i begrænsning af forurening og er et vigtig bidrag til bæredygtighed og grøn omstilling. Det er således en ressourcefornuftig måde for din virksomhed at udnytte spildaffald.
+        <br/>
+        <br/>
 
-    Hos os slipper du for at skulle henvende dig telefonisk og administrativt bøvl. Ved hjælp af vores app er du få klik fra at få afhentet din friturolie! </p>
+        <a href="https://www.iscc-system.org/wp-content/uploads/certificates/cert-pdf/EU-ISCC-Cert-DE110-75170090.pdf">
+            <img class="centreret" th:src="@{/img/ISCC.png}"/>
+        </a>
+
+        <br/>
+        <br/>
+
+        <b> Hent vores app!</b>
+
+        <p>Olieafhentning er nu gjort meget nemmere. Hent vores app og med få tryk kan du fremover bestille olieafhentning direkte fra din smartphone!</p>
+        <b class="red">Klik her for at hente vores app!</b>
+    </nav>
+
+    <article>
+        <p id="article2"><i> Træt af skjulte gebyrer og omkostninger? Vi tilbyder at afhente din olie ganske gratis og afregner 1 krone pr. liter brugt fritureolie!<span class="red"> Klik her så kontakter vi dig</span> eller ring til os for et uforpligtende tilbud! </i>
+        </p>
+
+        <br/>
+        <p>TG Renovation ApS er en godkendt dansk renovationsvirksomhed, som specialiserer sig i indsamling af vegetabilsk fritureolie.</p>
+        <br/>
 
 
-<footer th:replace="layout :: footer"/>
+        <p>Vi er foretrukken leverandør af flere restaurations og fastfood virksomheder landet over. Vores primære forcer er kvaliteten i vores arbejde, miljøvenlig håndtering af spildolie og højt serviceniveau i form af afhentning rettidigt.</p>
+
+        <br/>
+        <p>Din fritureolie udgør et vigtig element i begrænsning af forurening og er et vigtig bidrag til bæredygtighed og grøn omstilling. Det er således en ressourcefornuftig måde for din virksomhed at udnytte spildaffald.</p>
+
+        <br/>
+        <p>Hos os slipper du for at skulle henvende dig telefonisk og administrativt bøvl. Ved hjælp af vores app er du få klik fra at få afhentet din friturolie!</p>
+    </article>
+
+
+    <footer th:replace="layout :: footer"/>
+
+
+</div>
 
 </body>
 </html>
