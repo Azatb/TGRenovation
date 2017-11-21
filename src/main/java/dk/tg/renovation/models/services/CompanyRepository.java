@@ -65,5 +65,4 @@ public class CompanyRepository implements ICrud<Company> {
         }
         return null;
     }
-
 }
