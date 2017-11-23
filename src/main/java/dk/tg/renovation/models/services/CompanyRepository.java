@@ -63,8 +63,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
 
     @Override
     public void update(Company company) {
-        System.out.println("LuL");
-        System.out.println("Mega LUL");
+        
     }
 
     @Override
