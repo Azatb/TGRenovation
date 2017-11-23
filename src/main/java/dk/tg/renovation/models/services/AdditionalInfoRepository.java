@@ -3,6 +3,7 @@ package dk.tg.renovation.models.services;
 import dk.tg.renovation.models.entities.AddtionalInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
 
     @Autowired
     private JdbcTemplate jdbc;
+    private SqlRowSet sqlRowSet;
 
 
 
@@ -23,7 +25,16 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
 
     @Override
     public AddtionalInfo read(int cvr) {
-        return null;
+
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo WHERE CVR=" + cvr);
+
+        while(sqlRowSet.next()){
+            return new AddtionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),
+                    sqlRowSet.getInt("fk_CVR"));
+        }
+
+
+        return new AddtionalInfo();
     }
 
     // create metoden der bliver kaldt fra homecontrollleren.

@@ -3,6 +3,7 @@ package dk.tg.renovation.models.services;
 import dk.tg.renovation.models.entities.Oil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class OilRepository implements ICrud<Oil> {
 
     @Autowired
     private JdbcTemplate jdbc;
+    private SqlRowSet sqlRowSet;
 
 
     @Override
@@ -22,7 +24,16 @@ public class OilRepository implements ICrud<Oil> {
 
     @Override
     public Oil read(int cvr) {
-        return null;
+
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE CVR=" + cvr);
+
+        while(sqlRowSet.next()){
+            return new Oil(sqlRowSet.getString("oil"), sqlRowSet.getInt("amount"),
+                    sqlRowSet.getInt("fk_CVR"));
+        }
+
+
+        return new Oil();
     }
 
     // create metoden der bliver kaldt fra homecontrollleren.
