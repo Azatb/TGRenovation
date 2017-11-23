@@ -18,8 +18,12 @@ body {
     text-decoration: none;
 }
 
-.btn:hover {
+.btn:hover  {
     background-color: #1a9a29;
+}
+
+.btn.cancel:hover {
+    background-color: red;
 }
 
 ul {

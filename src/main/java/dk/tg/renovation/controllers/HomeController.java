@@ -20,13 +20,13 @@ public class HomeController {
     Company company = new Company();
 
     @Autowired
-    ICrud<Company> companyRepo = new CompanyRepository();
+    CompanyRepository companyRepo = new CompanyRepository();
     @Autowired
-    ICrud<ContactPerson> cpRepo = new ContactPersonRepository();
+    ContactPersonRepository cpRepo = new ContactPersonRepository();
     @Autowired
-    ICrud<Oil> oilRepo = new OilRepository();
+    OilRepository oilRepo = new OilRepository();
     @Autowired
-    ICrud<AddtionalInfo> addInfoRepo = new AdditionalInfoRepository();
+    AdditionalInfoRepository addInfoRepo = new AdditionalInfoRepository();
 
     @GetMapping("/")
     public String index() {
@@ -91,7 +91,7 @@ public class HomeController {
     public String login(@RequestParam("cName") String cName,
                         @RequestParam("password") String password){
         //login her
-        company = companyRepo.getCompany(cName, password);
+        company = companyRepo.logIn(cName, password);
 
         if (company == null) {
             return "redirect:/";

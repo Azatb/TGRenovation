@@ -46,8 +46,4 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
 
     }
 
-    @Override
-    public AddtionalInfo getCompany(String companyName, String password) {
-        return null;
-    }
 }

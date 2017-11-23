@@ -17,5 +17,4 @@ public interface ICrud<T>  {
 
     void update(T t);
 
-    public T getCompany(String companyName, String password);
 }

@@ -6,23 +6,43 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CompanyRepository implements ICrud<Company> {
+public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
 
     @Autowired
     private JdbcTemplate jdbc;
+    private SqlRowSet sqlRowSet;
 
     @Override
     public List<Company> readAll() {
-        return null;
+
+        ArrayList<Company> companies = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
+
+        while(sqlRowSet.next()){
+            companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"),
+                     sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number")));
+        }
+
+        return companies;
     }
 
     @Override
     public Company read(int cvr) {
-        return null;
+
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company WHERE CVR=" + cvr);
+
+        while(sqlRowSet.next()){
+            return new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"),
+                    sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number"));
+        }
+
+
+        return new Company();
     }
 
 
@@ -46,11 +66,10 @@ public class CompanyRepository implements ICrud<Company> {
     }
 
     @Override
-    public Company getCompany(String companyName, String password){
-
+    public Company logIn(String companyName, String password){
 
         ArrayList<Company> companies = new ArrayList<Company>();
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
 
         while(sqlRowSet.next()){
             // indhold af sqlRowset ned i en arrayliste
