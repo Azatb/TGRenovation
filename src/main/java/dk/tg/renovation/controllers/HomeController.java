@@ -100,8 +100,13 @@ public class HomeController {
         return "redirect:/indexBruger";
     }
 
-    @GetMapping("/seAfhentninger")
-    public String seAfhetning() {
+    @GetMapping("/seAfhentning")
+    public String seAfhentning(Model model) {
+        model.addAttribute("company", company);
+        model.addAttribute("cpPerson", cpRepo.read(company.getCvr()));
+        model.addAttribute("oil", cpRepo.read(company.getCvr()));
+        model.addAttribute("addInfo", addInfoRepo.read(company.getCvr()));
+
         return "seAfhentning";
     }
 

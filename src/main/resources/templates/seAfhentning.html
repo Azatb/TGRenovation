@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: relics">
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <header th:replace="layout :: header"/>
+
+    <ul th:replace="layout :: bruger-tg-menu"></ul>
+
+    <table>
+        <tr>
+            <td>Company Name</td>
+            <td>Company CVR</td>
+            <td>Company P Number</td>
+        </tr>
+        <tr th:each="c : ${company}">
+            <td th:text="${c.companyName}"></td>
+            <td th:text="${c.cvr}"></td>
+            <td th:text="${c.pNumber}"></td>
+        </tr>
+    </table>
+
+
+    <table>
+        <tr>
+            <td>Contact Person Name</td>
+            <td>Contact Person Number</td>
+            <td>Pickup Adress</td>
+        </tr>
+        <tr th:each="cp : ${cpPerson}">
+            <td th:text="${cp.name}"></td>
+            <td th:text="${cp.number}"></td>
+            <td th:text="${cp.pickupAdress}"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>Oil Size</td>
+            <td>Oil Amount</td>
+        </tr>
+        <tr th:each="o : ${oil}">
+            <td th:text="${o.size}"></td>
+            <td th:text="${o.amount}"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>Settlement</td>
+            <td>Comments</td>
+        </tr>
+        <tr th:each="ai : ${addInfo}">
+            <td th:text="${ai.settlement}"></td>
+            <td th:text="${ai.comments}"></td>
+        </tr>
+    </table>
+
+    <footer th:replace="layout :: footer"/>
+
+</div>
+
+
+</body>
+</html>
