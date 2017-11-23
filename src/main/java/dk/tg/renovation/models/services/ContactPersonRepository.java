@@ -3,6 +3,7 @@ package dk.tg.renovation.models.services;
 import dk.tg.renovation.models.entities.ContactPerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
 
     @Autowired
     private JdbcTemplate jdbc;
+    private SqlRowSet sqlRowSet;
 
     @Override
     public List<ContactPerson> readAll() {
@@ -20,7 +22,15 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
 
     @Override
     public ContactPerson read(int cvr) {
-        return null;
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company WHERE CVR=" + cvr);
+
+        while(sqlRowSet.next()){
+            return new ContactPerson(sqlRowSet.getString("name"), sqlRowSet.getInt("number"),
+                    sqlRowSet.getString("pickup_adress"), sqlRowSet.getInt("fk_CVR"));
+        }
+
+
+        return new ContactPerson();
     }
 
     // create metoden der bliver kaldt fra homecontrollleren.
