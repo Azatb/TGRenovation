@@ -26,6 +26,6 @@ nbdist/
 .nb-gradle/
 
 
-### Egne regler ###
+#Egne regler
 application.properties
 *.class
