@@ -1,6 +1,7 @@
 package dk.tg.renovation.models.services;
 
 import dk.tg.renovation.models.entities.Company;
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -63,6 +64,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     @Override
     public void update(Company company) {
         System.out.println("LuL");
+        System.out.println("Mega LUL");
     }
 
     @Override
