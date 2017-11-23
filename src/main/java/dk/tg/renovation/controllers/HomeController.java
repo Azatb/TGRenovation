@@ -115,6 +115,20 @@ public class HomeController {
         return "opdaterAfhentning";
     }
 
+    @PostMapping("/opdaterAfhentning")
+    public String opdaterAfhentning(@RequestParam("cpname") String cpname,
+                                  @RequestParam("phonenumber") int phonenumber,
+                                  @RequestParam("puadress") String puadress,
+                                  @RequestParam("size") String size,
+                                  @RequestParam("amount") int amount,
+                                  @RequestParam("settlement") String settlement,
+                                  @RequestParam("comments") String comments) {
+        cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
+        oilRepo.create(new Oil(size, amount, company.getCvr()));
+        addInfoRepo.create(new AddtionalInfo(settlement, comments, company.getCvr()));
+        return "redirect:/";
+    }
+
     @GetMapping("/fjernAfhentning")
     public String fjernAfhetning() {
         return "fjernAfhentning";

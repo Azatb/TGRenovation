@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="layout :: relics">
+
 </head>
 <body>
+<div class="wrapper">
 
-</body>
-</html>
+    <header th:replace="layout :: header"/>
+
+    <ul th:replace="layout :: bruger-tg-menu"></ul>
+
+    <form th:action="@{/opdaterAfhentning}" method="post">
+
+        <p> Opret ny afhentning</p>
+
+        <label> Contact Person <input type="text" name="cpname"/>
+        </label>
+
+        <label> Phone Number <input type="text" name="phonenumber"/>
+        </label>
+
+        <label> Pickup Adress <input type="text" name="puadress"/>
+        </label>
+
+        <label> Container Size
+        </label>
+
+        <label> <input type="radio" name="size" value="60L (53kg)" />60L (53kg)
+        </label>
+
+        <label> <input type="radio" name="size" value="120L (105kg)" />120L (105kg)
+        </label>
+
+        <label> <input type="radio" name="size" value="150L (115kg)" />150L (115kg)
+        </label>
+
+        <label>
+            <input type="radio" name="size" value="IBC 800-1000L" />IBC 800-1000L
+        </label>
+
+
+        <label> Oil Amount <input type="text" name="amount"/>
+        </label>
+
+        <label> Comments <input type="text" name="comments"/>
+        </label>
+
+        <label> Settlement <input type="text" name="settlement" />
+        </label>
+
+        <label> <input type="submit" value="Submit company"/>
+        </label>
+
+
+    </form>
