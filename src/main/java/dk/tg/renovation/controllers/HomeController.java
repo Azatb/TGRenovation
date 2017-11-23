@@ -99,4 +99,19 @@ public class HomeController {
 
         return "redirect:/indexBruger";
     }
+
+    @GetMapping("/seAfhentninger")
+    public String seAfhetning() {
+        return "seAfhentning";
+    }
+
+    @GetMapping("/opdaterAfhentning")
+    public String opdaterAfhetning() {
+        return "opdaterAfhentning";
+    }
+
+    @GetMapping("/fjernAfhentning")
+    public String fjernAfhetning() {
+        return "fjernAfhentning";
+    }
 }
