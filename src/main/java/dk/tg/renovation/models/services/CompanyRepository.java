@@ -63,7 +63,8 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
 
     @Override
     public void update(Company company) {
-
+        jdbc.update("UPDATE renovationdb.company SET company_name = '" + company.getCompanyName() + "', password = '" + company.getPassword() + "',  CVR = '" + company.getCvr() + "', p_number = '" +
+                company.getpNumber() + "' WHERE CVR = " + company.getCvr());
     }
 
     @Override
