@@ -47,7 +47,7 @@ public class OilRepository implements ICrud<Oil> {
 
     @Override
     public void delete(int cvr) {
-        jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM renovationdb.oil WHERE fk_CVR = " + cvr);
     }
 
     @Override
