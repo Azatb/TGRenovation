@@ -169,3 +169,15 @@ footer {
     margin-left: 20%;
 }
 
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 30%;
+}
+
+th {
+    height: 50px;
+}
