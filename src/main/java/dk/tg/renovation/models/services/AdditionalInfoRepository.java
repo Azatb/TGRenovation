@@ -26,7 +26,7 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
     @Override
     public AddtionalInfo read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo WHERE CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo WHERE fk_CVR=" + cvr);
 
         while(sqlRowSet.next()){
             return new AddtionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),
@@ -54,7 +54,8 @@ public class AdditionalInfoRepository implements ICrud<AddtionalInfo> {
 
     @Override
     public void update(AddtionalInfo addtionalInfo) {
-
+        jdbc.update("UPDATE renovationdb.additionalinfo SET settlement = '" + addtionalInfo.getSettlement() + "', comments = '" + addtionalInfo.getComments() + "', fk_CVR = '" +
+                addtionalInfo.getFkCVR() + "' WHERE fk_CVR = " + addtionalInfo.getFkCVR());
     }
 
 }

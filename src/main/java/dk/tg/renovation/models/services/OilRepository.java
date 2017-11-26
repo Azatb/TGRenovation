@@ -25,10 +25,10 @@ public class OilRepository implements ICrud<Oil> {
     @Override
     public Oil read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE fk_CVR=" + cvr);
 
         while(sqlRowSet.next()){
-            return new Oil(sqlRowSet.getString("oil"), sqlRowSet.getInt("amount"),
+            return new Oil(sqlRowSet.getString("size"), sqlRowSet.getInt("amount"),
                     sqlRowSet.getInt("fk_CVR"));
         }
 
@@ -52,7 +52,8 @@ public class OilRepository implements ICrud<Oil> {
 
     @Override
     public void update(Oil oil) {
-
+        jdbc.update("UPDATE  renovationdb.oil SET size = '" + oil.getSize() + "', amount = '" + oil.getAmount() + "', fk_CVR = '" +
+                oil.getFkCVR() + "' WHERE fk_CVR = " + oil.getFkCVR());
     }
 
 }

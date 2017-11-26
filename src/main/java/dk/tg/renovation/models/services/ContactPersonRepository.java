@@ -23,7 +23,7 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
     @Override
     public ContactPerson read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.contact_person WHERE CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.contact_person WHERE fk_CVR=" + cvr);
 
         while(sqlRowSet.next()){
             return new ContactPerson(sqlRowSet.getString("name"), sqlRowSet.getInt("number"),

@@ -104,7 +104,7 @@ public class HomeController {
     public String seAfhentning(Model model) {
         model.addAttribute("company", company);
         model.addAttribute("cpPerson", cpRepo.read(company.getCvr()));
-        model.addAttribute("oil", cpRepo.read(company.getCvr()));
+        model.addAttribute("oil", oilRepo.read(company.getCvr()));
         model.addAttribute("addInfo", addInfoRepo.read(company.getCvr()));
 
         return "seAfhentning";
@@ -123,9 +123,9 @@ public class HomeController {
                                   @RequestParam("amount") int amount,
                                   @RequestParam("settlement") String settlement,
                                   @RequestParam("comments") String comments) {
-        cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
-        oilRepo.create(new Oil(size, amount, company.getCvr()));
-        addInfoRepo.create(new AddtionalInfo(settlement, comments, company.getCvr()));
+        cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
+        oilRepo.update(new Oil(size, amount, company.getCvr()));
+        addInfoRepo.update(new AddtionalInfo(settlement, comments, company.getCvr()));
         return "redirect:/";
     }
 
