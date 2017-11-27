@@ -169,15 +169,21 @@ footer {
     margin-left: 20%;
 }
 
-table, td, th {
-    border: 1px solid black;
-}
-
 table {
     border-collapse: collapse;
-    width: 30%;
+    width: 100%
 }
 
-th {
-    height: 50px;
+td, th {
+    text-align: left;
+    padding: 5px;
+    background-color: white;
+    color: black;
+
 }
+#firmanavn{
+    text-align: center;
+    font-size: 30px;
+    margin-left: 50%;
+}
+

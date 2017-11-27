@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,17 +24,18 @@ public class OilRepository implements ICrud<Oil> {
     }
 
     @Override
-    public Oil read(int cvr) {
+    public ArrayList<Oil> read(int cvr) {
 
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE fk_CVR=" + cvr);
+        ArrayList<Oil> oil = new ArrayList<>();
+
 
         while(sqlRowSet.next()){
-            return new Oil(sqlRowSet.getString("size"), sqlRowSet.getInt("amount"),
-                    sqlRowSet.getInt("fk_CVR"));
+            oil.add(new Oil(sqlRowSet.getString("size"), sqlRowSet.getInt("amount")));
         }
 
 
-        return new Oil();
+        return oil;
     }
 
     // create metoden der bliver kaldt fra homecontrollleren.

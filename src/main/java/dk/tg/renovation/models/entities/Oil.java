@@ -9,6 +9,11 @@ public class Oil {
     public Oil() {
     }
 
+    public Oil(String size, int amount) {
+        this.size = size;
+        this.amount = amount;
+    }
+
     public Oil(String size, int amount, int fkCVR) {
         this.size = size;
         this.amount = amount;

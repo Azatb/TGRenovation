@@ -10,6 +10,12 @@ public class ContactPerson {
     public ContactPerson() {
     }
 
+    public ContactPerson(String name, int number, String pickupAdress) {
+        this.name = name;
+        this.number = number;
+        this.pickupAdress = pickupAdress;
+    }
+
     public ContactPerson(String name, int number, String pickupAdress, int fkCVR) {
         this.name = name;
         this.number = number;

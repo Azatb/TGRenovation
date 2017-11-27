@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,17 +22,20 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
     }
 
     @Override
-    public ContactPerson read(int cvr) {
+    public ArrayList<ContactPerson> read(int cvr) {
 
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.contact_person WHERE fk_CVR=" + cvr);
+        //laver en arraylist
+        ArrayList<ContactPerson> contactPersons = new ArrayList<>();
+
 
         while(sqlRowSet.next()){
-            return new ContactPerson(sqlRowSet.getString("name"), sqlRowSet.getInt("number"),
-                    sqlRowSet.getString("pickup_adress"), sqlRowSet.getInt("fk_CVR"));
+            contactPersons.add(new ContactPerson(sqlRowSet.getString("name"), sqlRowSet.getInt("number"),
+                    sqlRowSet.getString("pickup_adress")));
         }
 
 
-        return new ContactPerson();
+        return contactPersons;
     }
 
     // create metoden der bliver kaldt fra homecontrollleren.

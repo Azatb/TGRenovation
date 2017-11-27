@@ -7,6 +7,7 @@ public class Company {
     private int cvr;
     private int pNumber;
 
+
     public Company() {
     }
 

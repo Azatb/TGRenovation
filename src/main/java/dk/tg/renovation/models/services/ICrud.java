@@ -9,7 +9,7 @@ public interface ICrud<T>  {
 
     List<T> readAll();
 
-    T read(int cvr);
+    List<T> read(int cvr);
 
     void create(T t);
 

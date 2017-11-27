@@ -11,55 +11,35 @@
 
     <ul th:replace="layout :: bruger-tg-menu"></ul>
 
+
     <table>
-        <tr>
-            <th>Company Name</th>
-            <th>Company CVR</th>
-            <th>Company P Number</th>
-        </tr>
         <tr th:each="c : ${company}">
-            <td th:text="${c.companyName}"></td>
-            <td th:text="${c.cvr}"></td>
-            <td th:text="${c.pNumber}"></td>
+            <th id="firmanavn" th:text="${c.companyName}"></th>
         </tr>
     </table>
 
-
     <table>
+        <br/>
         <tr>
             <th>Contact Person Name</th>
             <th>Contact Person Number</th>
             <th>Pickup Adress</th>
-        </tr>
-        <tr th:each="cp : ${cpPerson}">
-            <td th:text="${cp.name}"></td>
-            <td th:text="${cp.number}"></td>
-            <td th:text="${cp.pickupAdress}"></td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
             <th>Oil Size</th>
             <th>Oil Amount</th>
-        </tr>
-        <tr th:each="o : ${oil}">
-            <td th:text="${o.size}"></td>
-            <td th:text="${o.amount}"></td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
             <th>Settlement</th>
             <th>Comments</th>
         </tr>
-        <tr th:each="ai : ${addInfo}">
-            <td th:text="${ai.settlement}"></td>
-            <td th:text="${ai.comments}"></td>
+        <tr th:each="mc : ${modelclass}">
+            <td th:text="${mc.name}"></td>
+            <td th:text="${mc.number}"></td>
+            <td th:text="${mc.pickupAdress}"></td>
+            <td th:text="${mc.size}"></td>
+            <td th:text="${mc.amount}"></td>
+            <td th:text="${mc.settlement}"></td>
+            <td th:text="${mc.comments}"></td>
         </tr>
-    </table>
 
+    </table>
     <footer th:replace="layout :: footer"/>
 
 </div>
