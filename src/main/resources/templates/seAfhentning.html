@@ -38,7 +38,6 @@
             <td th:text="${mc.amount}"></td>
             <td th:text="${mc.settlement}"></td>
             <td th:text="${mc.comments}"></td>
-            <td th:text="${mc.id}"></td>
             <td>
                 <!-- update knappen -->
                 <a th:href="@{/opdaterAfhentning(id=${mc.id})}" class="btn" >UPDATE </a>
@@ -50,7 +49,7 @@
                 <div id="popup1" class="overlay">
                     <div class="popup">
                         <h2>Are you sure you want to delete?</h2>
-                        <a class="btn" href="#" >CANCEL</a>
+                        <a class="btn cancel" href="#" >CANCEL</a>
 
                         <a th:href="@{/fjernAfhentning(id=${mc.id})}" class="btn" >DELETE</a>
                     </div>

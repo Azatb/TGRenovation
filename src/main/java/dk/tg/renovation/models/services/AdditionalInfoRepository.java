@@ -50,8 +50,8 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
         }
 
         @Override
-        public void delete (int cvr){
-            jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE fk_CVR = " + cvr);
+        public void delete (int id){
+            jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE id = " + id);
         }
 
         @Override

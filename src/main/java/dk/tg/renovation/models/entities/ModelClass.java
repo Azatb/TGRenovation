@@ -35,7 +35,7 @@ public class ModelClass {
         this.id = id;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 

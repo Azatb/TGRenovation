@@ -83,7 +83,7 @@ public class HomeController {
         cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
         oilRepo.create(new Oil(size, amount, company.getCvr()));
         addInfoRepo.create(new AdditionalInfo(settlement, comments, company.getCvr()));
-        return "redirect:/";
+        return "redirect:/seAfhentning";
     }
 
 
@@ -152,24 +152,8 @@ public class HomeController {
         return "seAfhentning";
     }
 
-    /*@GetMapping("/opdaterAfhentning")
-    public String opdaterAfhetning() {
-        return "opdaterAfhentning";
-    }
 
-    @PostMapping("/opdaterAfhentning")
-    public String opdaterAfhentning(@RequestParam("cpname") String cpname,
-                                  @RequestParam("phonenumber") int phonenumber,
-                                  @RequestParam("puadress") String puadress,
-                                  @RequestParam("size") String size,
-                                  @RequestParam("amount") int amount,
-                                  @RequestParam("settlement") String settlement,
-                                  @RequestParam("comments") String comments) {
-        cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
-        oilRepo.update(new Oil(size, amount, company.getCvr()));
-        addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()));
-        return "redirect:/";
-    }*/
+
 
     @GetMapping("/opdaterAfhentning")
     //requestparam skal udover at skulle sende videre til update.html
@@ -181,19 +165,37 @@ public class HomeController {
 
         ModelClass theOneTrueObject = new ModelClass();
 
-    for (int i=0; i<mc.size(); i++) {
-        if (mc.equals(intId)) {
-            theOneTrueObject = mc.get(i);
+        for (int i=0; i<mc.size(); i++) {
+            if (mc.equals(intId)) {
+                theOneTrueObject = mc.get(i);
+            }
         }
-    }
 
         model.addAttribute("mcobject", theOneTrueObject);
         return "opdaterAfhentning";
     }
 
 
+    @PostMapping("/opdaterAfhentning")
+    public String opdaterAfhentning(@RequestParam("cpname") String cpname,
+                                    @RequestParam("phonenumber") int phonenumber,
+                                    @RequestParam("puadress") String puadress,
+                                    @RequestParam("size") String size,
+                                    @RequestParam("amount") int amount,
+                                    @RequestParam("settlement") String settlement,
+                                    @RequestParam("comments") String comments) {
+        cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
+        oilRepo.update(new Oil(size, amount, company.getCvr()));
+        addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()));
+        return "redirect:/seAfhentning";
+    }
+
     @GetMapping("/fjernAfhentning")
-    public String fjernAfhetning() {
-        return "fjernAfhentning";
+    public String fjernAfhetning(@RequestParam("id") String id, Model model) {
+        int intId = Integer.parseInt(id);
+        cpRepo.delete(intId);
+        oilRepo.delete(intId);
+        addInfoRepo.delete(intId);
+        return "redirect:/seAfhentning";
     }
 }
