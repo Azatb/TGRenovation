@@ -16,6 +16,8 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
+    ArrayList<ModelClass> mc = new ArrayList<>();
+
     Company company = new Company();
 
     @Autowired
@@ -112,8 +114,7 @@ public class HomeController {
     @GetMapping("/seAfhentning")
     public String seAfhentning(Model model) {
 
-        // her vil vi gerne fylde informationen ind
-        ArrayList<ModelClass> mc = new ArrayList<>();
+        mc.clear();
 
         //første arrayliste
         ArrayList<ContactPerson> cp = new ArrayList<>();
@@ -139,10 +140,11 @@ public class HomeController {
 
             String settlement = ainfo.get(i).getSettlement();
             String comments = ainfo.get(i).getComments();
+            int id = ainfo.get(i).getId();
 
             mc.add(new ModelClass(name, number, puAdress,
                     size, amount,
-                    settlement, comments));
+                    settlement, comments, id));
         }
 
     model.addAttribute("company", company);
@@ -150,7 +152,7 @@ public class HomeController {
         return "seAfhentning";
     }
 
-    @GetMapping("/opdaterAfhentning")
+    /*@GetMapping("/opdaterAfhentning")
     public String opdaterAfhetning() {
         return "opdaterAfhentning";
     }
@@ -167,7 +169,28 @@ public class HomeController {
         oilRepo.update(new Oil(size, amount, company.getCvr()));
         addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()));
         return "redirect:/";
+    }*/
+
+    @GetMapping("/opdaterAfhentning")
+    //requestparam skal udover at skulle sende videre til update.html
+    //hedde det samme som parameteren Student altså studentId præcist
+    public String opdaterAfhentning(@RequestParam("id") String id, Model model){
+        int intId = Integer.parseInt(id);
+        // i get mapping ryger den her student ned og kan bruges som student
+        // i htmlen.
+
+        ModelClass theOneTrueObject = new ModelClass();
+
+    for (int i=0; i<mc.size(); i++) {
+        if (mc.equals(intId)) {
+            theOneTrueObject = mc.get(i);
+        }
     }
+
+        model.addAttribute("mcobject", theOneTrueObject);
+        return "opdaterAfhentning";
+    }
+
 
     @GetMapping("/fjernAfhentning")
     public String fjernAfhetning() {

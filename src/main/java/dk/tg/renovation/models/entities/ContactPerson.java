@@ -6,6 +6,7 @@ public class ContactPerson {
     private int number;
     private String pickupAdress;
     private int fkCVR;
+    private int id;
 
     public ContactPerson() {
     }
@@ -21,6 +22,10 @@ public class ContactPerson {
         this.number = number;
         this.pickupAdress = pickupAdress;
         this.fkCVR = fkCVR;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPickupAdress() {

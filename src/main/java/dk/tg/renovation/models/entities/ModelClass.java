@@ -9,6 +9,7 @@ public class ModelClass {
     private int amount;
     private String settlement;
     private String comments;
+    private int id;
 
     public ModelClass() {
     }
@@ -21,6 +22,25 @@ public class ModelClass {
         this.amount = amount;
         this.settlement = settlement;
         this.comments = comments;
+    }
+
+    public ModelClass(String name, int number, String pickupAdress, String size, int amount, String settlement, String comments, int id) {
+        this.name = name;
+        this.number = number;
+        this.pickupAdress = pickupAdress;
+        this.size = size;
+        this.amount = amount;
+        this.settlement = settlement;
+        this.comments = comments;
+        this.id = id;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

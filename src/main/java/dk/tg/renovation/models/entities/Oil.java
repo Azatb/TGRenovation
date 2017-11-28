@@ -5,6 +5,7 @@ public class Oil {
     private String size;
     private int amount;
     private int fkCVR;
+    private int id;
 
     public Oil() {
     }
@@ -18,6 +19,10 @@ public class Oil {
         this.size = size;
         this.amount = amount;
         this.fkCVR = fkCVR;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getSize() {

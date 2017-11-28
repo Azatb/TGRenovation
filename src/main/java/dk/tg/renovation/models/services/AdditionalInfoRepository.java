@@ -33,7 +33,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
 
 
         while (sqlRowSet.next()) {
-            additionalInfo.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments")));
+            additionalInfo.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),sqlRowSet.getInt("fk_CVR"), sqlRowSet.getInt("id")));
         }
 
 
