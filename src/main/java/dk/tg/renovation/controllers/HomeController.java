@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.misc.Request;
 
 import java.util.ArrayList;
 
 @Controller
 public class HomeController {
+
+    //variabel med nuværende id til update
+    int intId;
 
     ArrayList<ModelClass> mc = new ArrayList<>();
 
@@ -159,7 +163,7 @@ public class HomeController {
     //requestparam skal udover at skulle sende videre til update.html
     //hedde det samme som parameteren Student altså studentId præcist
     public String opdaterAfhentning(@RequestParam("id") String id, Model model){
-        int intId = Integer.parseInt(id);
+        intId = Integer.parseInt(id);
         // i get mapping ryger den her student ned og kan bruges som student
         // i htmlen.
 
@@ -184,9 +188,9 @@ public class HomeController {
                                     @RequestParam("amount") int amount,
                                     @RequestParam("settlement") String settlement,
                                     @RequestParam("comments") String comments) {
-        cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
-        oilRepo.update(new Oil(size, amount, company.getCvr()));
-        addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()));
+        cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()), intId);
+        oilRepo.update(new Oil(size, amount, company.getCvr()), intId);
+        addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()), intId);
         return "redirect:/seAfhentning";
     }
 

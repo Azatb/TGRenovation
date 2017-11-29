@@ -53,9 +53,9 @@ public class OilRepository implements ICrud<Oil> {
     }
 
     @Override
-    public void update(Oil oil) {
+    public void update(Oil oil, int id) {
         jdbc.update("UPDATE  renovationdb.oil SET size = '" + oil.getSize() + "', amount = '" + oil.getAmount() + "', fk_CVR = '" +
-                oil.getFkCVR() + "' WHERE fk_CVR = " + oil.getFkCVR());
+                oil.getFkCVR() + "' WHERE id = " + id);
     }
 
 }

@@ -55,8 +55,8 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
         }
 
         @Override
-        public void update (AdditionalInfo additionalInfo){
+        public void update (AdditionalInfo additionalInfo, int id){
             jdbc.update("UPDATE renovationdb.additionalinfo SET settlement = '" + additionalInfo.getSettlement() + "', comments = '" + additionalInfo.getComments() + "', fk_CVR = '" +
-                    additionalInfo.getFkCVR() + "' WHERE fk_CVR = " + additionalInfo.getFkCVR());
+                    additionalInfo.getFkCVR() + "' WHERE id = " + id);
         }
 }

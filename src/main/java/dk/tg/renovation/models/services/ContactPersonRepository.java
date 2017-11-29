@@ -53,9 +53,9 @@ public class ContactPersonRepository implements ICrud<ContactPerson> {
     }
 
     @Override
-    public void update(ContactPerson contactPerson) {
+    public void update(ContactPerson contactPerson, int id) {
         jdbc.update("UPDATE renovationdb.contact_person SET name = '" + contactPerson.getName() + "', number = '" + contactPerson.getNumber() + "',  pickup_adress = '" + contactPerson.getPickupAdress() + "', fk_CVR = '" +
-                contactPerson.getFkCVR() + "' WHERE fk_CVR = " + contactPerson.getFkCVR());
+                contactPerson.getFkCVR() + "' WHERE id = " + id);
     }
 
 }

@@ -15,6 +15,6 @@ public interface ICrud<T>  {
 
     void delete(int cvr);
 
-    void update(T t);
+    void update(T t, int id);
 
 }
