@@ -64,6 +64,9 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Chauffør>, IAdmin<
 
     @Override
     public void deleteCompany(int cvr) {
+        jdbc.update("DELETE FROM renovationdb.contact_person WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM renovationdb.oil WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE fk_CVR = " + cvr);
         jdbc.update("DELETE FROM renovationdb.company WHERE CVR = " + cvr);
     }
 

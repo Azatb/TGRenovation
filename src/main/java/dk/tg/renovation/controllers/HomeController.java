@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sun.misc.Request;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -221,9 +222,33 @@ public class HomeController {
     }
 
 
+    //herfra er der admin mappings
+
+
+
+
     @GetMapping("/indexAdmin")
     public String indexAdmin() {
         return "indexAdmin";
     }
+
+
+    @GetMapping("/seFirmaer")
+    public String seFirmaer(Model model) {
+        List<Company> companies = new ArrayList<>();
+        companies = adminRepo.readAll();
+        model.addAttribute("company", companies);
+
+        return "seFirmaer";
+    }
+
+    @GetMapping("/fjernFirma")
+    public String fjernFirma(@RequestParam("cvr") String cvr, Model model) {
+        int intcvr = Integer.parseInt(cvr);
+        adminRepo.deleteCompany(intcvr);
+        return "redirect:/seFirmaer";
+    }
+
+
 
 }
