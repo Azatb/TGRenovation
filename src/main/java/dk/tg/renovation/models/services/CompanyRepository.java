@@ -18,7 +18,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
 
-    @Override
+    /*@Override
     public List<Company> readAll() {
 
         ArrayList<Company> companies = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
         }
 
         return companies;
-    }
+    }*/
 
     @Override
     public ArrayList<Company> read(int cvr) {
@@ -57,11 +57,13 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
                 "VALUES('" + company.getCompanyName() + "', '" + company.getPassword() + "', '" + company.getCvr() + "', '" +  company.getpNumber() + "') ");
     }
 
+    //Bliver ikke brugt, ligger nu i AdminRepository. Overvejer om den skal flyttes.
     @Override
     public void delete(int cvr) {
         jdbc.update("DELETE FROM renovationdb.company WHERE CVR = " + cvr);
     }
 
+    //Denne metode bruges ikke, men skal implementeres i tilfælde af fejl i opretning eller
     @Override
     public void update(Company company,int id) {
         // bliver ikke brugt

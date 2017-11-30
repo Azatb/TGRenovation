@@ -19,11 +19,6 @@ public class OilRepository implements ICrud<Oil> {
 
 
     @Override
-    public List<Oil> readAll() {
-        return null;
-    }
-
-    @Override
     public ArrayList<Oil> read(int cvr) {
 
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE fk_CVR=" + cvr);

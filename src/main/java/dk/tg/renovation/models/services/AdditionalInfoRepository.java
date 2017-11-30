@@ -18,13 +18,6 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
 
-
-
-    @Override
-    public List<AdditionalInfo> readAll() {
-        return null;
-    }
-
     @Override
     public ArrayList<AdditionalInfo> read(int cvr) {
 
