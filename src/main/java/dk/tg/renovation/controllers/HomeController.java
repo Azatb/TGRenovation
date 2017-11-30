@@ -25,6 +25,8 @@ public class HomeController {
     Company company = new Company();
 
     @Autowired
+    AdminRepository adminRepo = new AdminRepository();
+    @Autowired
     CompanyRepository companyRepo = new CompanyRepository();
     @Autowired
     ContactPersonRepository cpRepo = new ContactPersonRepository();
@@ -95,14 +97,21 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@RequestParam("cName") String cName,
                         @RequestParam("password") String password){
+
+        Admin admin = new Admin();
+
         //login her
         company = companyRepo.logIn(cName, password);
+        admin = adminRepo.logIn(cName, password);
 
-        if (company == null) {
-            return "redirect:/";
+        if (admin != null) {
+            return "redirect:/indexAdmin";
+        }
+        if (company != null) {
+            return "redirect:/indexBruger";
         }
 
-        return "redirect:/indexBruger";
+        return "redirect:/";
     }
 
     /*@GetMapping("/seAfhentning")
@@ -202,4 +211,11 @@ public class HomeController {
         addInfoRepo.delete(intId);
         return "redirect:/seAfhentning";
     }
+
+
+    @GetMapping("/indexAdmin")
+    public String indexAdmin() {
+        return "indexAdmin";
+    }
+
 }
