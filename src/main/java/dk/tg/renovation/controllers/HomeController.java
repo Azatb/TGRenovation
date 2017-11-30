@@ -57,11 +57,13 @@ public class HomeController {
                              @RequestParam("size") String size,
                              @RequestParam("amount") int amount,
                              @RequestParam("settlement") String settlement,
-                             @RequestParam("comments") String comments){
+                             @RequestParam("comments") String comments,
+                             @RequestParam("weekday") String weekday,
+                             @RequestParam("region") String region){
         companyRepo.create(new Company(cname, password,  cvr, pnumber));
         cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, cvr));
         oilRepo.create(new Oil(size, amount, cvr));
-        addInfoRepo.create(new AdditionalInfo(settlement, comments, cvr));
+        addInfoRepo.create(new AdditionalInfo(settlement, comments, weekday, region, cvr));
         return "redirect:/";
     }
 
@@ -85,10 +87,12 @@ public class HomeController {
                                   @RequestParam("size") String size,
                                   @RequestParam("amount") int amount,
                                   @RequestParam("settlement") String settlement,
-                                  @RequestParam("comments") String comments) {
+                                  @RequestParam("comments") String comments,
+                                  @RequestParam("weekday") String weekday,
+                                  @RequestParam("region") String region) {
         cpRepo.create(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()));
         oilRepo.create(new Oil(size, amount, company.getCvr()));
-        addInfoRepo.create(new AdditionalInfo(settlement, comments, company.getCvr()));
+        addInfoRepo.create(new AdditionalInfo(settlement, comments, weekday, region, company.getCvr()));
         return "redirect:/seAfhentning";
     }
 
@@ -153,11 +157,13 @@ public class HomeController {
 
             String settlement = ainfo.get(i).getSettlement();
             String comments = ainfo.get(i).getComments();
+            String weekDay = ainfo.get(i).getWeekDay();
+            String region = ainfo.get(i).getRegion();
             int id = ainfo.get(i).getId();
 
             mc.add(new ModelClass(name, number, puAdress,
                     size, amount,
-                    settlement, comments, id));
+                    settlement, comments, weekDay, region, id));
         }
 
     model.addAttribute("company", company);
@@ -196,10 +202,12 @@ public class HomeController {
                                     @RequestParam("size") String size,
                                     @RequestParam("amount") int amount,
                                     @RequestParam("settlement") String settlement,
-                                    @RequestParam("comments") String comments) {
+                                    @RequestParam("comments") String comments,
+                                    @RequestParam("weekday") String weekday,
+                                    @RequestParam("region") String region) {
         cpRepo.update(new ContactPerson(cpname, phonenumber, puadress, company.getCvr()), intId);
         oilRepo.update(new Oil(size, amount, company.getCvr()), intId);
-        addInfoRepo.update(new AdditionalInfo(settlement, comments, company.getCvr()), intId);
+        addInfoRepo.update(new AdditionalInfo(settlement, comments, weekday, region, company.getCvr()), intId);
         return "redirect:/seAfhentning";
     }
 

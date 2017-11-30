@@ -9,12 +9,14 @@ public class ModelClass {
     private int amount;
     private String settlement;
     private String comments;
+    private String weekDay;
+    private String region;
     private int id;
 
     public ModelClass() {
     }
 
-    public ModelClass(String name, int number, String pickupAdress, String size, int amount, String settlement, String comments) {
+    public ModelClass(String name, int number, String pickupAdress, String size, int amount, String settlement, String comments, String weekDay, String region) {
         this.name = name;
         this.number = number;
         this.pickupAdress = pickupAdress;
@@ -22,9 +24,11 @@ public class ModelClass {
         this.amount = amount;
         this.settlement = settlement;
         this.comments = comments;
+        this.weekDay = weekDay;
+        this.region = region;
     }
 
-    public ModelClass(String name, int number, String pickupAdress, String size, int amount, String settlement, String comments, int id) {
+    public ModelClass(String name, int number, String pickupAdress, String size, int amount, String settlement, String comments, String weekDay, String region, int id) {
         this.name = name;
         this.number = number;
         this.pickupAdress = pickupAdress;
@@ -32,7 +36,25 @@ public class ModelClass {
         this.amount = amount;
         this.settlement = settlement;
         this.comments = comments;
+        this.weekDay = weekDay;
+        this.region = region;
         this.id = id;
+    }
+
+    public String getWeekDay() {
+        return weekDay;
+    }
+
+    public void setWeekDay(String weekDay) {
+        this.weekDay = weekDay;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public int getId() {

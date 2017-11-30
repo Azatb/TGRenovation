@@ -33,7 +33,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
 
 
         while (sqlRowSet.next()) {
-            additionalInfo.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),sqlRowSet.getInt("fk_CVR"), sqlRowSet.getInt("id")));
+            additionalInfo.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"), sqlRowSet.getString("weekday"), sqlRowSet.getString("region"), sqlRowSet.getInt("fk_CVR"), sqlRowSet.getInt("id")));
         }
 
 
@@ -44,8 +44,8 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
         // Indsætter ind i databasen med MySql
         @Override
         public void create (AdditionalInfo additionalInfo){
-            jdbc.update("INSERT INTO renovationdb.additionalInfo(settlement, comments, fk_CVR) " +
-                    "VALUES('" + additionalInfo.getSettlement() + "', '" + additionalInfo.getComments() + "', '" + additionalInfo.getFkCVR() + "') ");
+            jdbc.update("INSERT INTO renovationdb.additionalInfo(settlement, comments, weekday, region, fk_CVR) " +
+                    "VALUES('" + additionalInfo.getSettlement() + "', '" + additionalInfo.getComments() + "', '" + additionalInfo.getWeekDay() + "', '" + additionalInfo.getRegion() + "', '" + additionalInfo.getFkCVR() + "') ");
 
         }
 
@@ -56,7 +56,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
 
         @Override
         public void update (AdditionalInfo additionalInfo, int id){
-            jdbc.update("UPDATE renovationdb.additionalinfo SET settlement = '" + additionalInfo.getSettlement() + "', comments = '" + additionalInfo.getComments() + "', fk_CVR = '" +
+            jdbc.update("UPDATE renovationdb.additionalinfo SET settlement = '" + additionalInfo.getSettlement() + "', comments = '" + additionalInfo.getComments() + "', comments = '" + additionalInfo.getWeekDay() + "', comments = '" + additionalInfo.getRegion() + "', fk_CVR = '" +
                     additionalInfo.getFkCVR() + "' WHERE id = " + id);
         }
 }
