@@ -33,7 +33,7 @@ CREATE TABLE `additionalinfo` (
   UNIQUE KEY `additionalinfo_id_uindex` (`id`),
   KEY `additionalInfo_company_CVR_fk` (`fk_CVR`),
   CONSTRAINT `additionalInfo_company_CVR_fk` FOREIGN KEY (`fk_CVR`) REFERENCES `company` (`CVR`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,6 @@ CREATE TABLE `additionalinfo` (
 
 LOCK TABLES `additionalinfo` WRITE;
 /*!40000 ALTER TABLE `additionalinfo` DISABLE KEYS */;
-INSERT INTO `additionalinfo` VALUES ('mobilepay ligesom gulddreng','hurtigt lak','Torsdag','Region Hovedstaden',15,1234);
 /*!40000 ALTER TABLE `additionalinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +68,6 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES ('azatinc','1234',1234,1234);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +88,7 @@ CREATE TABLE `contact_person` (
   UNIQUE KEY `contact_person_id_uindex` (`id`),
   KEY `customer_company_CVR_fk` (`fk_CVR`),
   CONSTRAINT `customer_company_CVR_fk` FOREIGN KEY (`fk_CVR`) REFERENCES `company` (`CVR`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,8 +97,34 @@ CREATE TABLE `contact_person` (
 
 LOCK TABLES `contact_person` WRITE;
 /*!40000 ALTER TABLE `contact_person` DISABLE KEYS */;
-INSERT INTO `contact_person` VALUES ('Azat',30303030,'lolvej',1234,15);
 /*!40000 ALTER TABLE `contact_person` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `driver`
+--
+
+DROP TABLE IF EXISTS `driver`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `driver` (
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `region` varchar(50) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `driver_id_uindex` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `driver`
+--
+
+LOCK TABLES `driver` WRITE;
+/*!40000 ALTER TABLE `driver` DISABLE KEYS */;
+INSERT INTO `driver` VALUES ('hassanG','1234','Region Syddanmark',7);
+/*!40000 ALTER TABLE `driver` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -119,7 +143,7 @@ CREATE TABLE `oil` (
   UNIQUE KEY `oil_id_uindex` (`id`),
   KEY `oil_company_CVR_fk` (`fk_CVR`),
   CONSTRAINT `oil_company_CVR_fk` FOREIGN KEY (`fk_CVR`) REFERENCES `company` (`CVR`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +152,6 @@ CREATE TABLE `oil` (
 
 LOCK TABLES `oil` WRITE;
 /*!40000 ALTER TABLE `oil` DISABLE KEYS */;
-INSERT INTO `oil` VALUES ('120L (105kg)',4,1234,15);
 /*!40000 ALTER TABLE `oil` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -141,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30 12:49:55
+-- Dump completed on 2017-12-01 14:46:48
