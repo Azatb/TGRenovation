@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import sun.misc.Request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +20,16 @@ public class HomeController {
     int intId;
 
     ArrayList<ModelClass> mc = new ArrayList<>();
+    List<Driver> drivers = new ArrayList<>();
 
     Company company = new Company();
 
+    //Repositories
+
     @Autowired
     AdminRepository adminRepo = new AdminRepository();
+    @Autowired
+    DriverRepository driverRepo = new DriverRepository();
     @Autowired
     CompanyRepository companyRepo = new CompanyRepository();
     @Autowired
@@ -35,6 +38,8 @@ public class HomeController {
     OilRepository oilRepo = new OilRepository();
     @Autowired
     AdditionalInfoRepository addInfoRepo = new AdditionalInfoRepository();
+
+
 
     @GetMapping("/")
     public String index() {
@@ -104,16 +109,24 @@ public class HomeController {
                         @RequestParam("password") String password){
 
         Admin admin = new Admin();
+        Driver driver = new Driver();
 
         //login her
         company = companyRepo.logIn(cName, password);
+        driver = driverRepo.logIn(cName, password);
         admin = adminRepo.logIn(cName, password);
+
+
+        if (company != null) {
+            return "redirect:/indexBruger";
+        }
+
+        if (driver != null) {
+            return "redirect:/indexDriver";
+        }
 
         if (admin != null) {
             return "redirect:/indexAdmin";
-        }
-        if (company != null) {
-            return "redirect:/indexBruger";
         }
 
         return "redirect:/";
@@ -249,6 +262,75 @@ public class HomeController {
         return "redirect:/seFirmaer";
     }
 
+    @GetMapping("/opretDriver")
+    public String opretDriver() {
 
+        return "opretDriver";
+    }
+
+    @PostMapping("/opretDriver")
+    public String opretDriver(@RequestParam("username") String username,
+                              @RequestParam("password") String password,
+                              @RequestParam("region") String region){
+        adminRepo.create(new Driver(username, password, region));
+        return "redirect:/seDrivers";
+    }
+
+    @GetMapping("/seDrivers")
+    public String seDrivers(Model model) {
+        //smider en ligegyldig int med
+        int id = 123;
+        drivers = adminRepo.read(id);
+        model.addAttribute("drivers", drivers);
+        return "seDrivers";
+    }
+
+    @GetMapping("/fjernDriver")
+    public String fjernDriver(@RequestParam("driverId") String id){
+        int driverID = Integer.parseInt(id);
+        adminRepo.delete(driverID);
+        return "redirect:/seDrivers";
+
+    }
+
+    @GetMapping("/opdaterDriver")
+    public String opdaterDriver(@RequestParam("driverId") String id, Model model){
+        intId = Integer.parseInt(id);
+
+        Driver driver = new Driver();
+
+        for (int i=0; i<drivers.size(); i++) {
+            if (drivers.equals(intId)) {
+                driver = drivers.get(i);
+            }
+        }
+        model.addAttribute("driverObject", driver);
+        return "/opdaterDriver";
+    }
+
+
+    @PostMapping("/opdaterDriver")
+    public String opdaterDriver(@RequestParam("username") String username,
+                                @RequestParam("password") String password,
+                                @RequestParam("region") String region){
+        adminRepo.update(new Driver(username, password, region), intId);
+        return "redirect:/seDrivers";
+    }
+
+
+
+
+
+    //herfra er chauffør mappings
+
+    @GetMapping("/indexDriver")
+    public String indexDriver() {
+        return "indexDriver";
+    }
+
+    @GetMapping("/seKøreplan")
+    public String seKøreplan() {
+        return "seKøreplan";
+    }
 
 }

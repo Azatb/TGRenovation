@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: relics">
+
+</head>
+<body>
+<div class="wrapper">
+
+    <header th:replace="layout :: header"/>
+
+    <ul th:replace="layout :: admin-tg-menu"></ul>
+
+    <form th:action="@{/opretDriver}" method="post">
+
+        <h1> Opret ny driver</h1>
+
+        <label> Username <input type="text" name="username"/>
+        </label>
+
+        <label> Password <input type="text" name="password"/>
+        </label>
+
+        <label> Region <input type="radio" name="region" value="Region Hovedstaden"/>Region Hovedstaden
+        </label>
+
+        <label> Region <input type="radio" name="region" value="Region Syddanmark"/>Region Syddanmark
+        </label>
+
+        <label> <input type="submit" value="Submit company"/>
+        </label>
+
+
+    </form>
+
+
+
+
+    <footer th:replace="layout :: footer"/>
+
+</div>
+</body>
+</html>
