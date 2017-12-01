@@ -17,6 +17,20 @@ public class OilRepository implements ICrud<Oil> {
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
 
+    @Override
+    public List<Oil> readAll() {
+
+        ArrayList<Oil> oils = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil");
+
+        while(sqlRowSet.next()){
+            oils.add(new Oil(sqlRowSet.getString("size"), sqlRowSet.getInt("amount"),
+                    sqlRowSet.getInt("fk_CVR")));
+        }
+
+        return oils;
+    }
+
 
     @Override
     public ArrayList<Oil> read(int cvr) {

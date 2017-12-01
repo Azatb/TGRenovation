@@ -329,7 +329,45 @@ public class HomeController {
     }
 
     @GetMapping("/seKøreplan")
-    public String seKøreplan() {
+    public String seKøreplan(@RequestParam("driver") Model model) {
+
+
+        mc.clear();
+
+        //første arrayliste
+        List<ContactPerson> cp = new ArrayList<>();
+        cp = cpRepo.readAll();
+
+        //anden arrayliste
+        List<Oil> oil = new ArrayList<>();
+        oil = oilRepo.readAll();
+
+        //tredje arrayliste
+        List<AdditionalInfo> ainfo = new ArrayList<>();
+        ainfo = addInfoRepo.readAll();
+
+        for (int i=0; i<cp.size(); i++) {
+
+            String name = cp.get(i).getName();
+            int number = cp.get(i).getNumber();
+            String puAdress = cp.get(i).getPickupAdress();
+
+            String size = oil.get(i).getSize();
+            int amount = oil.get(i).getAmount();
+
+            String settlement = ainfo.get(i).getSettlement();
+            String comments = ainfo.get(i).getComments();
+            String weekDay = ainfo.get(i).getWeekDay();
+            String region = ainfo.get(i).getRegion();
+            int id = ainfo.get(i).getId();
+
+            mc.add(new ModelClass(name, number, puAdress,
+                    size, amount,
+                    settlement, comments, weekDay, region, id));
+        }
+
+
+        model.addAttribute("bestilling", driverRepo.checkRegion());
         return "seKøreplan";
     }
 

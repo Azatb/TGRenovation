@@ -11,6 +11,36 @@
 <ul th:replace="layout :: driver-tg-menu"></ul>
 
 
+<table>
+    <tr>
+        <th>Company Name</th>
+        <th>Password</th>
+        <th>CVR</th>
+        <th>P Number</th>
+        <th></th>
+    </tr>
+    <tr th:each="b : ${bestilling}">
+        <td th:text="${c.companyName}"></td>
+        <td th:text="${c.password}"></td>
+        <td th:text="${c.cvr}"></td>
+        <td th:text="${c.pNumber}"></td>
+        <td>
+
+            <!-- popup delete knappen -->
+            <a class="btn" href="#popup1" >DELETE</a>
+
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2>Are you sure you want to delete?</h2>
+                    <a class="btn cancel" href="#" >CANCEL</a>
+
+                    <a th:href="@{/fjernFirma(cvr=${c.cvr})}" class="btn" >DELETE</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
 <footer th:replace="layout :: footer"/>
 
 </body>

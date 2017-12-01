@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ICrud<T>  {
 
+    List<T> readAll();
+
     List<T> read(int cvr);
 
     void create(T t);

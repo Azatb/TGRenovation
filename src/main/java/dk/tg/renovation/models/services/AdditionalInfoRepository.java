@@ -19,6 +19,20 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
     private SqlRowSet sqlRowSet;
 
     @Override
+    public List<AdditionalInfo> readAll() {
+
+        ArrayList<AdditionalInfo> additionalInfos = new ArrayList<>();
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo");
+
+        while(sqlRowSet.next()){
+            additionalInfos.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),
+                    sqlRowSet.getString("weekday"), sqlRowSet.getString("region"), sqlRowSet.getInt("fk_CVR")));
+        }
+
+        return additionalInfos;
+    }
+
+    @Override
     public ArrayList<AdditionalInfo> read(int cvr) {
 
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo WHERE fk_CVR=" + cvr);

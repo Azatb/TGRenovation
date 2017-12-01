@@ -18,7 +18,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
 
-    /*@Override
+    @Override
     public List<Company> readAll() {
 
         ArrayList<Company> companies = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
         }
 
         return companies;
-    }*/
+    }
 
     @Override
     public ArrayList<Company> read(int cvr) {
