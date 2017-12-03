@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Service
-public class OilRepository implements ICrud<Oil> {
+public class OilRepository implements ICrud<Oil>, IReadAll<Oil> {
 
     @Autowired
     private JdbcTemplate jdbc;

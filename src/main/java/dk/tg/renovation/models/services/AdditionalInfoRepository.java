@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Service
-public class AdditionalInfoRepository implements ICrud<AdditionalInfo> {
+public class AdditionalInfoRepository implements ICrud<AdditionalInfo>, IReadAll<AdditionalInfo> {
 
     @Autowired
     private JdbcTemplate jdbc;

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ContactPersonRepository implements ICrud<ContactPerson> {
+public class ContactPersonRepository implements ICrud<ContactPerson>, IReadAll<ContactPerson> {
 
     @Autowired
     private JdbcTemplate jdbc;

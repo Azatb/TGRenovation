@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Company> {
+public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Company>, IReadAll<Company> {
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -59,9 +59,9 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
         jdbc.update("UPDATE renovationdb.driver SET username = '" + driver.getDriverUserName() + "', password = '" + driver.getDriverPassword() + "',  region = '" + driver.getDriverRegion() + "' WHERE id = " + id);
     }
 
+
     @Override
     public List<Company> readAll() {
-
         ArrayList<Company> companies = new ArrayList<>();
         sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
 
@@ -72,6 +72,9 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
 
         return companies;
     }
+
+
+
 
     @Override
     public void deleteCompany(int cvr) {

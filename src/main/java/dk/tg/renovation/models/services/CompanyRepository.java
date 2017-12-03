@@ -18,19 +18,6 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     private JdbcTemplate jdbc;
     private SqlRowSet sqlRowSet;
 
-    @Override
-    public List<Company> readAll() {
-
-        ArrayList<Company> companies = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
-
-        while(sqlRowSet.next()){
-            companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"),
-                     sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number")));
-        }
-
-        return companies;
-    }
 
     @Override
     public ArrayList<Company> read(int cvr) {
