@@ -23,6 +23,9 @@ public class HomeController {
     List<Driver> drivers = new ArrayList<>();
 
     Company company = new Company();
+    //disse bliver fyldt igennem login metoden
+    Admin admin;
+    Driver driver;
 
     //Repositories
 
@@ -108,9 +111,6 @@ public class HomeController {
     public String login(@RequestParam("cName") String cName,
                         @RequestParam("password") String password){
 
-        Admin admin = new Admin();
-        Driver driver = new Driver();
-
         //login her
         company = companyRepo.logIn(cName, password);
         driver = driverRepo.logIn(cName, password);
@@ -148,15 +148,15 @@ public class HomeController {
         mc.clear();
 
         //første arrayliste
-        ArrayList<ContactPerson> cp = new ArrayList<>();
+        ArrayList<ContactPerson> cp;
         cp = cpRepo.read(company.getCvr());
 
         //anden arrayliste
-        ArrayList<Oil> oil = new ArrayList<>();
+        ArrayList<Oil> oil;
         oil = oilRepo.read(company.getCvr());
 
         //tredje arrayliste
-        ArrayList<AdditionalInfo> ainfo = new ArrayList<>();
+        ArrayList<AdditionalInfo> ainfo;
         ainfo = addInfoRepo.read(company.getCvr());
 
 
@@ -329,45 +329,37 @@ public class HomeController {
     }
 
     @GetMapping("/seKøreplan")
-    public String seKøreplan(@RequestParam("driver") Model model) {
+    public String seKøreplan(Model model) {
+
+        //til at fylde op med alle
+        List<AdditionalInfo> ainfo;
+
+        List<ContactPerson> cp;
+
+        List<Oil> oil;
+
+        ainfo = addInfoRepo.readAll();
+        cp = cpRepo.readAll();
+        oil = oilRepo.readAll();
 
 
         mc.clear();
 
-        //første arrayliste
-        List<ContactPerson> cp = new ArrayList<>();
-        cp = cpRepo.readAll();
-
-        //anden arrayliste
-        List<Oil> oil = new ArrayList<>();
-        oil = oilRepo.readAll();
-
-        //tredje arrayliste
-        List<AdditionalInfo> ainfo = new ArrayList<>();
-        ainfo = addInfoRepo.readAll();
-
-        for (int i=0; i<cp.size(); i++) {
-
-            String name = cp.get(i).getName();
-            int number = cp.get(i).getNumber();
-            String puAdress = cp.get(i).getPickupAdress();
-
-            String size = oil.get(i).getSize();
-            int amount = oil.get(i).getAmount();
-
-            String settlement = ainfo.get(i).getSettlement();
-            String comments = ainfo.get(i).getComments();
-            String weekDay = ainfo.get(i).getWeekDay();
-            String region = ainfo.get(i).getRegion();
-            int id = ainfo.get(i).getId();
-
-            mc.add(new ModelClass(name, number, puAdress,
-                    size, amount,
-                    settlement, comments, weekDay, region, id));
+        //vi kører alle bestillinger igennem
+        //hvis ainfo (som er den tabel med region) matcher
+        //med chaufførens region, så adder vi al information
+        //fra netop den i til modelclass, da den passer
+        for (int i=0; i<ainfo.size(); i++) {
+            if (ainfo.get(i).getRegion().equalsIgnoreCase(driver.getDriverRegion())) {
+                mc.add(new ModelClass(cp.get(i).getName(), cp.get(i).getNumber(), cp.get(i).getPickupAdress(),
+                        oil.get(i).getSize(), oil.get(i).getAmount(),
+                        ainfo.get(i).getSettlement(), ainfo.get(i).getComments(), ainfo.get(i).getWeekDay(),
+                        ainfo.get(i).getRegion(), ainfo.get(i).getId()));
+            }
         }
 
 
-        model.addAttribute("bestilling", driverRepo.checkRegion());
+        model.addAttribute("driveplan", mc);
         return "seKøreplan";
     }
 

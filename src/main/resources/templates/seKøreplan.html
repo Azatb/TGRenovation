@@ -13,33 +13,25 @@
 
 <table>
     <tr>
-        <th>Company Name</th>
-        <th>Password</th>
-        <th>CVR</th>
-        <th>P Number</th>
+        <th>Kontaktperson navn</th>
+        <th>Tlf nummer</th>
+        <th>Afhentnings adresse</th>
+        <th>Olie størrelse</th>
+        <th>Olie mængde</th>
+        <th>Betalingsform</th>
+        <th>Kommentarer</th>
         <th></th>
     </tr>
-    <tr th:each="b : ${bestilling}">
-        <td th:text="${c.companyName}"></td>
-        <td th:text="${c.password}"></td>
-        <td th:text="${c.cvr}"></td>
-        <td th:text="${c.pNumber}"></td>
-        <td>
-
-            <!-- popup delete knappen -->
-            <a class="btn" href="#popup1" >DELETE</a>
-
-            <div id="popup1" class="overlay">
-                <div class="popup">
-                    <h2>Are you sure you want to delete?</h2>
-                    <a class="btn cancel" href="#" >CANCEL</a>
-
-                    <a th:href="@{/fjernFirma(cvr=${c.cvr})}" class="btn" >DELETE</a>
-                </div>
-            </div>
-        </td>
+    <tr th:each="dp : ${driveplan}">
+        <td th:text="${dp.name}"></td>
+        <td th:text="${dp.number}"></td>
+        <td th:text="${dp.pickupAdress}"></td>
+        <td th:text="${dp.size}"></td>
+        <td th:text="${dp.amount}"></td>
+        <td th:text="${dp.settlement}"></td>
+        <td th:text="${dp.comments}"></td>
     </tr>
-
+</table>
 
 <footer th:replace="layout :: footer"/>
 
