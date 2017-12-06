@@ -1,4 +1,4 @@
-package dk.tg.renovation.models.services;;
+package dk.tg.renovation.models.services.interfaces;;
 
 public interface Ilogin<T> {
 
