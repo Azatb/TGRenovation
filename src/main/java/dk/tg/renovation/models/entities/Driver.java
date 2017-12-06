@@ -1,7 +1,5 @@
 package dk.tg.renovation.models.entities;
 
-import dk.tg.renovation.models.services.Ilogin;
-
 public class Driver {
 
     private String driverUserName;

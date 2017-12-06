@@ -21,14 +21,14 @@
     <table>
         <br/>
         <tr>
-            <th>Contact Person Name</th>
-            <th>Contact Person Number</th>
-            <th>Pickup Adress</th>
-            <th>Oil Size</th>
-            <th>Oil Amount</th>
-            <th>Settlement</th>
-            <th>Comments</th>
-            <th>Weekday</th>
+            <th>Kontakperson navn</th>
+            <th>Kontaktperson kundenummer / tlf. nummer</th>
+            <th>Afhentningsadresse</th>
+            <th>Beholderstørrelse</th>
+            <th>Antal beholdere</th>
+            <th>Afregning</th>
+            <th>Evt. bemærkninger</th>
+            <th>Afhentningsdag</th>
             <th>Region</th>
             <th></th>
         </tr>
@@ -45,18 +45,18 @@
 
             <td>
                 <!-- update knappen -->
-                <a th:href="@{/opdaterAfhentning(id=${mc.id})}" class="btn" >UPDATE </a>
+                <a th:href="@{/opdaterAfhentning(id=${mc.id})}" class="btn" >Opdater</a>
 
 
                 <!-- popup delete knappen -->
-                <a class="btn" href="#popup1" >DELETE</a>
+                <a class="btn" href="#popup1" >Fjern</a>
 
                 <div id="popup1" class="overlay">
                     <div class="popup">
-                        <h2>Are you sure you want to delete?</h2>
-                        <a class="btn cancel" href="#" >CANCEL</a>
+                        <h2>Er du sikker på du vil slette denne afhentning?</h2>
+                        <a class="btn cancel" href="#" >Afbryd</a>
 
-                        <a th:href="@{/fjernAfhentning(id=${mc.id})}" class="btn" >DELETE</a>
+                        <a th:href="@{/fjernAfhentning(id=${mc.id})}" class="btn" >Fjern</a>
                     </div>
                 </div>
             </td>

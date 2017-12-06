@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head th:fragment="relics">
-    <link rel="stylesheet" href="C:\Users\gusta\IdeaProjects\TGRenovation\src\main\resources\static\style.css"
+    <link rel="stylesheet"
+          href="C:\Users\gusta\IdeaProjects\TGRenovation\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
     <title>TG Renovation ApS</title>
 </head>
@@ -29,17 +30,15 @@
             <!--her er de 2 textblocke til username og password-->
             <div class="form-group">
                 <input type="text" name="cName" id="cName" class="login-input"
-                       placeholder="UserName" required="true" autofocus="true"/>
+                       placeholder="Brugernavn" required="true" autofocus="true"/>
             </div>
             <div class="form-group">
                 <input type="password" name="password" id="password" class="login-input"
-                       placeholder="Password" required="true"/>
+                       placeholder="Kodeord" required="true"/>
             </div>
 
-            <!--her skal være metode til at logge ind-->
-
             <!-- her er knapperne i popup boxen -->
-            <a class="btn cancel" href="#" >Cancel</a>
+            <a class="btn cancel" href="#" >Afbryd</a>
             <input type="submit" value="Login" class="btn"/>
             </form>
         </div>

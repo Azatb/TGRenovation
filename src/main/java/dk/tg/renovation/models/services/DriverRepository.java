@@ -3,12 +3,12 @@ package dk.tg.renovation.models.services;
 import dk.tg.renovation.models.entities.AdditionalInfo;
 import dk.tg.renovation.models.entities.Driver;
 import dk.tg.renovation.models.entities.ModelClass;
+import dk.tg.renovation.models.services.interfaces.Ilogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Service

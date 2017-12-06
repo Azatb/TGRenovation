@@ -1,6 +1,4 @@
-package dk.tg.renovation.models.services;
-
-import java.util.List;
+package dk.tg.renovation.models.services;;
 
 public interface Ilogin<T> {
 

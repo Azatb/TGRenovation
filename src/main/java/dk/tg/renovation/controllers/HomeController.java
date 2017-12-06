@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class HomeController {
@@ -148,36 +151,21 @@ public class HomeController {
         mc.clear();
 
         //første arrayliste
-        ArrayList<ContactPerson> cp;
-        cp = cpRepo.read(company.getCvr());
+        ArrayList<ContactPerson> cp = cpRepo.read(company.getCvr());
 
         //anden arrayliste
-        ArrayList<Oil> oil;
-        oil = oilRepo.read(company.getCvr());
+        ArrayList<Oil> oil = oilRepo.read(company.getCvr());
 
         //tredje arrayliste
-        ArrayList<AdditionalInfo> ainfo;
-        ainfo = addInfoRepo.read(company.getCvr());
+        ArrayList<AdditionalInfo> ainfo = addInfoRepo.read(company.getCvr());
 
 
         for (int i=0; i<cp.size(); i++) {
 
-            String name = cp.get(i).getName();
-            int number = cp.get(i).getNumber();
-            String puAdress = cp.get(i).getPickupAdress();
-
-            String size = oil.get(i).getSize();
-            int amount = oil.get(i).getAmount();
-
-            String settlement = ainfo.get(i).getSettlement();
-            String comments = ainfo.get(i).getComments();
-            String weekDay = ainfo.get(i).getWeekDay();
-            String region = ainfo.get(i).getRegion();
-            int id = ainfo.get(i).getId();
-
-            mc.add(new ModelClass(name, number, puAdress,
-                    size, amount,
-                    settlement, comments, weekDay, region, id));
+            mc.add(new ModelClass(cp.get(i).getName(), cp.get(i).getNumber(), cp.get(i).getPickupAdress(),
+                    oil.get(i).getSize(), oil.get(i).getAmount(),
+                    ainfo.get(i).getSettlement(), ainfo.get(i).getComments(),
+                    ainfo.get(i).getWeekDay(), ainfo.get(i).getRegion(), ainfo.get(i).getId()));
         }
 
     model.addAttribute("company", company);
@@ -358,6 +346,24 @@ public class HomeController {
             }
         }
 
+        /*
+        //tjek dag
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.GERMAN);
+
+        Calendar calendar = Calendar.getInstance();
+        weekDay = dayFormat.format(calendar.getTime());
+
+        //nyt arraylist der skal fyldes:
+        ArrayList<ModelClass> mc2 = new ArrayList<>();
+
+        for (int i=0; i<mc.size(); i++) {
+            if (mc.get(i).getWeekDay().equalsIgnoreCase(weekDay)) {
+                mc2.add(mc.get(i));
+                System.out.println("added " + mc2.get(i));
+            }
+        }
+*/
 
         model.addAttribute("driveplan", mc);
         return "seKøreplan";

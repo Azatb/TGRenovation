@@ -1,4 +1,4 @@
-package dk.tg.renovation.models.services;
+package dk.tg.renovation.models.services.interfaces;
 
 import dk.tg.renovation.models.entities.Company;
 import org.springframework.jdbc.core.JdbcTemplate;

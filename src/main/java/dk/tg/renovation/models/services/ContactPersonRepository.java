@@ -1,6 +1,8 @@
 package dk.tg.renovation.models.services;
 
 import dk.tg.renovation.models.entities.ContactPerson;
+import dk.tg.renovation.models.services.interfaces.ICrud;
+import dk.tg.renovation.models.services.interfaces.IReadAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;

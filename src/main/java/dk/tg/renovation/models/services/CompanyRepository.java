@@ -1,15 +1,14 @@
 package dk.tg.renovation.models.services;
 
 import dk.tg.renovation.models.entities.Company;
-import org.codehaus.groovy.runtime.powerassert.SourceText;
+import dk.tg.renovation.models.services.interfaces.ICrud;
+import dk.tg.renovation.models.services.interfaces.Ilogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
@@ -66,12 +65,16 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
 
         while(sqlRowSet.next()){
             // indhold af sqlRowset ned i en arrayliste
-            companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"), sqlRowSet.getInt("CVR"), sqlRowSet.getInt("p_number")));
+            companies.add(new Company(sqlRowSet.getString("company_name"),
+                                      sqlRowSet.getString("password"),
+                                      sqlRowSet.getInt("CVR"),
+                                      sqlRowSet.getInt("p_number")));
         }
 
 
         for (int i=0; i<companies.size(); i++) {
-            if(companies.get(i).getCompanyName().equals(companyName) && companies.get(i).getPassword().equals(password)) {
+            if(companies.get(i).getCompanyName().equals(companyName)
+               && companies.get(i).getPassword().equals(password)) {
                 return companies.get(i);
             }
         }

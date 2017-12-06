@@ -14,8 +14,8 @@
     <table>
         <br/>
         <tr>
-            <th>Username</th>
-            <th>Password</th>
+            <th>Brugernavn</th>
+            <th>Kodeord</th>
             <th>Region</th>
             <th></th>
         </tr>
@@ -26,18 +26,18 @@
 
             <td>
                 <!-- update knappen -->
-                <a th:href="@{/opdaterDriver(driverId=${d.driverId})}" class="btn" >UPDATE </a>
+                <a th:href="@{/opdaterDriver(driverId=${d.driverId})}" class="btn" >Opdater </a>
 
 
                 <!-- popup delete knappen -->
-                <a class="btn" href="#popup1" >DELETE</a>
+                <a class="btn" href="#popup1" >Fjern</a>
 
                 <div id="popup1" class="overlay">
                     <div class="popup">
-                        <h2>Are you sure you want to delete?</h2>
-                        <a class="btn cancel" href="#" >CANCEL</a>
+                        <h2>Er du sikker på du vil slette denne chauffør?</h2>
+                        <a class="btn cancel" href="#" >Afbryd</a>
 
-                        <a th:href="@{/fjernDriver(driverId=${d.driverId})}" class="btn" >DELETE</a>
+                        <a th:href="@{/fjernDriver(driverId=${d.driverId})}" class="btn" >Fjern</a>
                     </div>
                 </div>
             </td>
