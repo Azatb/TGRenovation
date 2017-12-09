@@ -55,7 +55,7 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM renovationdb.driver WHERE id= " + id);
+        jdbc.update("DELETE FROM renovationdb.driver WHERE id = " + id);
     }
 
     @Override

@@ -22,7 +22,11 @@ public class HomeController {
     //variabel med nuværende id til update
     int intId;
 
-    ArrayList<ModelClass> mc = new ArrayList<>();
+    List<ContactPerson> cp;
+    List<Oil> oil;
+    List<AdditionalInfo> ainfo;
+
+    List<ModelClass> mc = new ArrayList<>();
     List<Driver> drivers = new ArrayList<>();
 
     Company company = new Company();
@@ -114,6 +118,7 @@ public class HomeController {
     public String login(@RequestParam("cName") String cName,
                         @RequestParam("password") String password){
 
+
         //login her
         company = companyRepo.logIn(cName, password);
         driver = driverRepo.logIn(cName, password);
@@ -150,14 +155,11 @@ public class HomeController {
 
         mc.clear();
 
-        //første arrayliste
-        ArrayList<ContactPerson> cp = cpRepo.read(company.getCvr());
+        cp = cpRepo.read(company.getCvr());
 
-        //anden arrayliste
-        ArrayList<Oil> oil = oilRepo.read(company.getCvr());
+        oil = oilRepo.read(company.getCvr());
 
-        //tredje arrayliste
-        ArrayList<AdditionalInfo> ainfo = addInfoRepo.read(company.getCvr());
+        ainfo = addInfoRepo.read(company.getCvr());
 
 
         for (int i=0; i<cp.size(); i++) {
@@ -236,7 +238,7 @@ public class HomeController {
 
     @GetMapping("/seFirmaer")
     public String seFirmaer(Model model) {
-        List<Company> companies = new ArrayList<>();
+        List<Company> companies;
         companies = adminRepo.readAll();
         model.addAttribute("company", companies);
 
@@ -275,8 +277,8 @@ public class HomeController {
 
     @GetMapping("/fjernDriver")
     public String fjernDriver(@RequestParam("driverId") String id){
-        int driverID = Integer.parseInt(id);
-        adminRepo.delete(driverID);
+        intId = Integer.parseInt(id);
+        adminRepo.delete(intId);
         return "redirect:/seDrivers";
 
     }
@@ -284,8 +286,6 @@ public class HomeController {
     @GetMapping("/opdaterDriver")
     public String opdaterDriver(@RequestParam("driverId") String id, Model model){
         intId = Integer.parseInt(id);
-
-        Driver driver = new Driver();
 
         for (int i=0; i<drivers.size(); i++) {
             if (drivers.equals(intId)) {
@@ -319,17 +319,9 @@ public class HomeController {
     @GetMapping("/seKøreplan")
     public String seKøreplan(Model model) {
 
-        //til at fylde op med alle
-        List<AdditionalInfo> ainfo;
-
-        List<ContactPerson> cp;
-
-        List<Oil> oil;
-
-        ainfo = addInfoRepo.readAll();
         cp = cpRepo.readAll();
         oil = oilRepo.readAll();
-
+        ainfo = addInfoRepo.readAll();
 
         mc.clear();
 
@@ -346,7 +338,13 @@ public class HomeController {
             }
         }
 
-        /*
+        model.addAttribute("driveplan", mc);
+        return "seKøreplan";
+    }
+
+}
+
+/*
         //tjek dag
         String weekDay;
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.GERMAN);
@@ -363,10 +361,4 @@ public class HomeController {
                 System.out.println("added " + mc2.get(i));
             }
         }
-*/
-
-        model.addAttribute("driveplan", mc);
-        return "seKøreplan";
-    }
-
-}
+        */

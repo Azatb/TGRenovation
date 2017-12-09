@@ -65,8 +65,12 @@ public class ContactPersonRepository implements ICrud<ContactPerson>, IReadAll<C
 
     @Override
     public void update(ContactPerson contactPerson, int id) {
-        jdbc.update("UPDATE renovationdb.contact_person SET name = '" + contactPerson.getName() + "', number = '" + contactPerson.getNumber() + "',  pickup_adress = '" + contactPerson.getPickupAdress() + "', fk_CVR = '" +
-                contactPerson.getFkCVR() + "' WHERE id = " + id);
+        jdbc.update("UPDATE renovationdb.contact_person SET " +
+                "name = '" + contactPerson.getName()
+                + "', number = '" + contactPerson.getNumber()
+                + "',  pickup_adress = '" + contactPerson.getPickupAdress()
+                + "', fk_CVR = '" + contactPerson.getFkCVR()
+                + "' " + "WHERE id = " + id);
     }
 
 }
