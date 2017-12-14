@@ -53,7 +53,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo>, IReadAll
         // Indsætter ind i databasen med MySql
         @Override
         public void create (AdditionalInfo additionalInfo){
-            jdbc.update("INSERT INTO additionalInfo(settlement, comments, weekday, region, fk_CVR) " +
+            jdbc.update("INSERT INTO additionalinfo(settlement, comments, weekday, region, fk_CVR) " +
                     "VALUES('" + additionalInfo.getSettlement() + "', '" + additionalInfo.getComments() + "', '" + additionalInfo.getWeekDay() + "', '" + additionalInfo.getRegion() + "', '" + additionalInfo.getFkCVR() + "') ");
 
         }
