@@ -22,7 +22,7 @@ public class ContactPersonRepository implements ICrud<ContactPerson>, IReadAll<C
     public List<ContactPerson> readAll() {
 
         ArrayList<ContactPerson> contactPeople = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.contact_person");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM contact_person");
 
         while(sqlRowSet.next()){
             contactPeople.add(new ContactPerson(sqlRowSet.getString("name"), sqlRowSet.getInt("number"),
@@ -35,7 +35,7 @@ public class ContactPersonRepository implements ICrud<ContactPerson>, IReadAll<C
     @Override
     public ArrayList<ContactPerson> read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.contact_person WHERE fk_CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM contact_person WHERE fk_CVR=" + cvr);
         //laver en arraylist
         ArrayList<ContactPerson> contactPersons = new ArrayList<>();
 
@@ -54,18 +54,18 @@ public class ContactPersonRepository implements ICrud<ContactPerson>, IReadAll<C
     // Indsætter ind i databasen med MySql
     @Override
     public void create(ContactPerson contactPerson) {
-        jdbc.update("INSERT INTO renovationdb.contact_person(name, number, pickup_adress, fk_CVR) " +
+        jdbc.update("INSERT INTO contact_person(name, number, pickup_adress, fk_CVR) " +
                 "VALUES('" + contactPerson.getName() + "', '" + contactPerson.getNumber() + "', '" + contactPerson.getPickupAdress() + "', '" + contactPerson.getFkCVR() + "') ");
     }
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM renovationdb.contact_person WHERE id= " + id);
+        jdbc.update("DELETE FROM contact_person WHERE id= " + id);
     }
 
     @Override
     public void update(ContactPerson contactPerson, int id) {
-        jdbc.update("UPDATE renovationdb.contact_person SET " +
+        jdbc.update("UPDATE contact_person SET " +
                 "name = '" + contactPerson.getName()
                 + "', number = '" + contactPerson.getNumber()
                 + "',  pickup_adress = '" + contactPerson.getPickupAdress()

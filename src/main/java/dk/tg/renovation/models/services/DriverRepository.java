@@ -24,7 +24,7 @@ public class DriverRepository implements Ilogin<Driver> {
     public Driver logIn(String un, String pw) {
 
         ArrayList<Driver> drivers = new ArrayList<Driver>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.driver");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM driver");
 
         while (sqlRowSet.next()) {
             // indhold af sqlRowset ned i en arrayliste

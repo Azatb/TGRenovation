@@ -37,7 +37,7 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
 
     //her bruger vi ikke parameteren fordi vi gerne vil ha alt fra databasen
         ArrayList<Driver> drivers = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.driver");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM driver");
 
         while(sqlRowSet.next()){
             drivers.add(new Driver(sqlRowSet.getString("username"), sqlRowSet.getString("password"),
@@ -49,25 +49,25 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
 
     @Override
     public void create(Driver driver) {
-        jdbc.update("INSERT INTO renovationdb.driver(username, password, region) " +
+        jdbc.update("INSERT INTO driver(username, password, region) " +
                 "VALUES('" + driver.getDriverUserName() + "', '" + driver.getDriverPassword() + "', '" +  driver.getDriverRegion() + "') ");
     }
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM renovationdb.driver WHERE id = " + id);
+        jdbc.update("DELETE FROM driver WHERE id = " + id);
     }
 
     @Override
     public void update(Driver driver, int id) {
-        jdbc.update("UPDATE renovationdb.driver SET username = '" + driver.getDriverUserName() + "', password = '" + driver.getDriverPassword() + "',  region = '" + driver.getDriverRegion() + "' WHERE id = " + id);
+        jdbc.update("UPDATE driver SET username = '" + driver.getDriverUserName() + "', password = '" + driver.getDriverPassword() + "',  region = '" + driver.getDriverRegion() + "' WHERE id = " + id);
     }
 
 
     @Override
     public List<Company> readAll() {
         ArrayList<Company> companies = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM company");
 
         while(sqlRowSet.next()){
             companies.add(new Company(sqlRowSet.getString("company_name"), sqlRowSet.getString("password"),
@@ -82,10 +82,10 @@ public class AdminRepository implements Ilogin<Admin>, ICrud<Driver>, IAdmin<Com
 
     @Override
     public void deleteCompany(int cvr) {
-        jdbc.update("DELETE FROM renovationdb.contact_person WHERE fk_CVR = " + cvr);
-        jdbc.update("DELETE FROM renovationdb.oil WHERE fk_CVR = " + cvr);
-        jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE fk_CVR = " + cvr);
-        jdbc.update("DELETE FROM renovationdb.company WHERE CVR = " + cvr);
+        jdbc.update("DELETE FROM contact_person WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM oil WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM additionalinfo WHERE fk_CVR = " + cvr);
+        jdbc.update("DELETE FROM company WHERE CVR = " + cvr);
     }
 
 

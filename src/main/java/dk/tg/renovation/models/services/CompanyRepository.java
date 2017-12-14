@@ -21,7 +21,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     @Override
     public ArrayList<Company> read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company WHERE CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM company WHERE CVR=" + cvr);
         ArrayList<Company> companies = new ArrayList<>();
 
         while(sqlRowSet.next()){
@@ -39,21 +39,21 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     // Indsætter ind i databasen med MySql
     @Override
     public void create(Company company) {
-        jdbc.update("INSERT INTO renovationdb.company(company_name, password, CVR, p_number) " +
+        jdbc.update("INSERT INTO company(company_name, password, CVR, p_number) " +
                 "VALUES('" + company.getCompanyName() + "', '" + company.getPassword() + "', '" + company.getCvr() + "', '" +  company.getpNumber() + "') ");
     }
 
     //Bliver ikke brugt, ligger nu i AdminRepository. Overvejer om den skal flyttes.
     @Override
     public void delete(int cvr) {
-        jdbc.update("DELETE FROM renovationdb.company WHERE CVR = " + cvr);
+        jdbc.update("DELETE FROM company WHERE CVR = " + cvr);
     }
 
     //Denne metode bruges ikke, men skal implementeres i tilfælde af fejl i opretning eller
     @Override
     public void update(Company company,int id) {
         // bliver ikke brugt
-        jdbc.update("UPDATE renovationdb.company SET company_name = '" + company.getCompanyName() + "', password = '" + company.getPassword() + "',  CVR = '" + company.getCvr() + "', p_number = '" +
+        jdbc.update("UPDATE company SET company_name = '" + company.getCompanyName() + "', password = '" + company.getPassword() + "',  CVR = '" + company.getCvr() + "', p_number = '" +
                 company.getpNumber() + "' WHERE CVR = " + company.getCvr());
     }
 
@@ -61,7 +61,7 @@ public class CompanyRepository implements ICrud<Company>, Ilogin<Company> {
     public Company logIn(String companyName, String password){
 
         ArrayList<Company> companies = new ArrayList<Company>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.company");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM company");
 
         while(sqlRowSet.next()){
             // indhold af sqlRowset ned i en arrayliste

@@ -23,7 +23,7 @@ public class OilRepository implements ICrud<Oil>, IReadAll<Oil> {
     public List<Oil> readAll() {
 
         ArrayList<Oil> oils = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM oil");
 
         while(sqlRowSet.next()){
             oils.add(new Oil(sqlRowSet.getString("size"), sqlRowSet.getInt("amount"),
@@ -37,7 +37,7 @@ public class OilRepository implements ICrud<Oil>, IReadAll<Oil> {
     @Override
     public ArrayList<Oil> read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.oil WHERE fk_CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM oil WHERE fk_CVR=" + cvr);
         ArrayList<Oil> oil = new ArrayList<>();
 
 
@@ -54,18 +54,18 @@ public class OilRepository implements ICrud<Oil>, IReadAll<Oil> {
     // Indsætter ind i databasen med MySql
     @Override
     public void create(Oil oil) {
-        jdbc.update("INSERT INTO renovationdb.oil(size, amount, fk_CVR) " +
+        jdbc.update("INSERT INTO oil(size, amount, fk_CVR) " +
                 "VALUES('" + oil.getSize() + "', '" + oil.getAmount() + "', '" + oil.getFkCVR() + "') ");
     }
 
     @Override
     public void delete(int id) {
-        jdbc.update("DELETE FROM renovationdb.oil WHERE id = " + id);
+        jdbc.update("DELETE FROM oil WHERE id = " + id);
     }
 
     @Override
     public void update(Oil oil, int id) {
-        jdbc.update("UPDATE  renovationdb.oil SET size = '" + oil.getSize() + "', amount = '" + oil.getAmount() + "', fk_CVR = '" +
+        jdbc.update("UPDATE  oil SET size = '" + oil.getSize() + "', amount = '" + oil.getAmount() + "', fk_CVR = '" +
                 oil.getFkCVR() + "' WHERE id = " + id);
     }
 

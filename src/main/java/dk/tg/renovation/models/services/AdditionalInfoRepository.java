@@ -24,7 +24,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo>, IReadAll
     public List<AdditionalInfo> readAll() {
 
         ArrayList<AdditionalInfo> additionalInfos = new ArrayList<>();
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo");
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM additionalinfo");
 
         while(sqlRowSet.next()){
             additionalInfos.add(new AdditionalInfo(sqlRowSet.getString("settlement"), sqlRowSet.getString("comments"),
@@ -37,7 +37,7 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo>, IReadAll
     @Override
     public ArrayList<AdditionalInfo> read(int cvr) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM renovationdb.additionalinfo WHERE fk_CVR=" + cvr);
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM additionalinfo WHERE fk_CVR=" + cvr);
         ArrayList<AdditionalInfo> additionalInfo = new ArrayList<>();
 
 
@@ -53,19 +53,19 @@ public class AdditionalInfoRepository implements ICrud<AdditionalInfo>, IReadAll
         // Indsætter ind i databasen med MySql
         @Override
         public void create (AdditionalInfo additionalInfo){
-            jdbc.update("INSERT INTO renovationdb.additionalInfo(settlement, comments, weekday, region, fk_CVR) " +
+            jdbc.update("INSERT INTO additionalInfo(settlement, comments, weekday, region, fk_CVR) " +
                     "VALUES('" + additionalInfo.getSettlement() + "', '" + additionalInfo.getComments() + "', '" + additionalInfo.getWeekDay() + "', '" + additionalInfo.getRegion() + "', '" + additionalInfo.getFkCVR() + "') ");
 
         }
 
         @Override
         public void delete (int id){
-            jdbc.update("DELETE FROM renovationdb.additionalinfo WHERE id = " + id);
+            jdbc.update("DELETE FROM additionalinfo WHERE id = " + id);
         }
 
         @Override
         public void update (AdditionalInfo additionalInfo, int id){
-            jdbc.update("UPDATE renovationdb.additionalinfo SET settlement = '" + additionalInfo.getSettlement() + "', comments = '" + additionalInfo.getComments() + "', weekday = '" + additionalInfo.getWeekDay() + "', region = '" + additionalInfo.getRegion() + "', fk_CVR = '" +
+            jdbc.update("UPDATE additionalinfo SET settlement = '" + additionalInfo.getSettlement() + "', comments = '" + additionalInfo.getComments() + "', weekday = '" + additionalInfo.getWeekDay() + "', region = '" + additionalInfo.getRegion() + "', fk_CVR = '" +
                     additionalInfo.getFkCVR() + "' WHERE id = " + id);
         }
 }
